@@ -231,24 +231,25 @@ public class Client {
 				}
 				String[] n = new String[5];
 				int e = 0;
+				int l = 0;
 				for (int j = 0; j < item.size(); j++) {
 					for (int i = 0; i < 9; i++) {
 						if (!item.get(j).getText(i).equals("")) {
 							n[e] = item.get(j).getText(i);
+							System.out.println("Numero: " + item.get(j).getText(i));
 							e++;
 						}
 					}
 					for (String string : n) {
 
-						if (e > 0) {
-							if (segnati[e] == true && segnati[e - 1] == true) {
+						if (e > 0 && l > 0) {
+							if (segnati[l] == true && segnati[l - 1] == true) {
 								ambo = true;
 								break;
 							} else {
 								ambo = false;
 							}
 						}
-						e++;
 					}
 					if (ambo == true) {
 						System.out.println("AMBO");
@@ -257,6 +258,7 @@ public class Client {
 						System.out.println();
 					}
 					e = 0;
+					l++;
 				}
 			}
 		});
@@ -275,6 +277,7 @@ public class Client {
 				}
 				String[] n = new String[5];
 				int e = 0;
+				int l = 0;
 				for (int j = 0; j < item.size(); j++) {
 					for (int i = 0; i < 9; i++) {
 						if (!item.get(j).getText(i).equals("")) {
@@ -284,15 +287,14 @@ public class Client {
 					}
 					for (String string : n) {
 
-						if (e > 0) {
-							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2]) {
+						if (l > 1) {
+							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true) {
 								terna = true;
 								break;
 							} else {
 								terna = false;
 							}
 						}
-						e++;
 					}
 					if (terna == true) {
 						System.out.println("TERNA");
@@ -301,6 +303,7 @@ public class Client {
 						System.out.println();
 					}
 					e = 0;
+					l++;
 				}
 			}
 		});
@@ -319,6 +322,7 @@ public class Client {
 				}
 				String[] n = new String[5];
 				int e = 0;
+				int l = 0;
 				for (int j = 0; j < item.size(); j++) {
 					for (int i = 0; i < 9; i++) {
 						if (!item.get(j).getText(i).equals("")) {
@@ -328,16 +332,15 @@ public class Client {
 					}
 					for (String string : n) {
 
-						if (e > 0) {
-							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2]
-									&& segnati[e - 3] == true) {
+						if (l > 2) {
+							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true
+									&& segnati[l - 3] == true) {
 								quaterna = true;
 								break;
 							} else {
 								quaterna = false;
 							}
 						}
-						e++;
 					}
 					if (quaterna == true) {
 						System.out.println("QUATERNA");
@@ -346,6 +349,7 @@ public class Client {
 						System.out.println();
 					}
 					e = 0;
+					l++;
 				}
 			}
 		});
@@ -363,6 +367,7 @@ public class Client {
 				}
 				String[] n = new String[5];
 				int e = 0;
+				int l = 0;
 				for (int j = 0; j < item.size(); j++) {
 					for (int i = 0; i < 9; i++) {
 						if (!item.get(j).getText(i).equals("")) {
@@ -372,24 +377,24 @@ public class Client {
 					}
 					for (String string : n) {
 
-						if (e > 0) {
-							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2] && segnati[e - 3] == true
-									&& segnati[e - 4] == true) {
+						if (l > 3) {
+							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true
+									&& segnati[l - 3] == true && segnati[l - 4] == true) {
 								cinquina = true;
 								break;
 							} else {
 								cinquina = false;
 							}
 						}
-						e++;
 					}
 					if (cinquina == true) {
 						System.out.println("CINQUINA");
-						cinquinaFatto = true;
+						quaternaFatto = true;
 					} else {
 						System.out.println();
 					}
 					e = 0;
+					l++;
 				}
 			}
 		});
