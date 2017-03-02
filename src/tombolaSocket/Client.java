@@ -88,7 +88,7 @@ public class Client {
 		shell.setSize(641, 213);
 		shell.setText("Concorrente");
 
-		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
+		table = new Table(shell, SWT.BORDER);
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 		table.setBounds(21, 10, 382, 87);

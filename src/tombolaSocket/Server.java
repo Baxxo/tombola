@@ -14,10 +14,12 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.custom.TableCursor;
 import org.eclipse.wb.swt.SWTResourceManager;
-
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
@@ -43,7 +45,6 @@ public class Server {
 	int num = 0;
 	int tombola[][] = new int[9][10];
 	Thread tServer;
-	private Text text;
 	serverThread sThread;
 
 	/**
@@ -104,9 +105,9 @@ public class Server {
 		shell.setSize(994, 481);
 		shell.setText("Tombola");
 
-		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(27, 36, 424, 200);
+		table = new Table(shell, SWT.BORDER);
 		table.setHeaderVisible(true);
+		table.setBounds(27, 36, 424, 200);
 		table.setLinesVisible(true);
 
 		TableColumn tableColumn = new TableColumn(table, SWT.NONE);
@@ -149,8 +150,6 @@ public class Server {
 		tableColumn_9.setWidth(42);
 		tableColumn_9.setResizable(false);
 
-		TableCursor tableCursor = new TableCursor(table, SWT.NONE);
-
 		for (int i = 0; i < 9; i++) {
 			tbItem = new TableItem(table, SWT.NONE);
 			item.add(tbItem);
@@ -165,7 +164,7 @@ public class Server {
 			}
 		}
 
-		table_1 = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
+		table_1 = new Table(shell, SWT.BORDER);
 		table_1.setBounds(531, 36, 424, 200);
 		table_1.setHeaderVisible(true);
 		table_1.setLinesVisible(true);
@@ -246,21 +245,13 @@ public class Server {
 		btnNumero.setText("Numero");
 
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		list.setBounds(531, 242, 117, 191);
+		list.setBounds(593, 291, 274, 124);
 
-		text = new Text(shell, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL);
-		text.setBounds(654, 242, 301, 191);
+		Label lblClient = new Label(shell, SWT.NONE);
+		lblClient.setAlignment(SWT.CENTER);
+		lblClient.setBounds(593, 252, 274, 15);
+		lblClient.setText("Client");
 
-	}
-
-	public void aggiungiTesto(String messaggio) {
-		Display.getDefault().asyncExec(new Runnable() {
-
-			@Override
-			public void run() {
-				text.append(messaggio);
-			}
-		});
 	}
 
 	public void aggiugiClient(String client) {
