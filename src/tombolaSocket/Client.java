@@ -42,6 +42,14 @@ public class Client {
 	private int[] numeri; // numeri contenuti in questa cartella
 	private boolean[] segnati = new boolean[15]; // true se il numero
 													// corrispondente è segnato
+	boolean ambo = false;
+	boolean amboFatto = false;
+	boolean terna = false;
+	boolean ternaFatto = false;
+	boolean quaterna = false;
+	boolean quaternaFatto = false;
+	boolean cinquina = false;
+	boolean cinquinaFatto = false;
 
 	/**
 	 * Launch the application.
@@ -195,6 +203,27 @@ public class Client {
 						}
 					}
 				}
+				if (amboFatto == false) {
+					checkAmbo(num);
+				} else if (ternaFatto == false) {
+					checkTerna(num);
+
+				} else if (quaternaFatto == false) {
+					checkQuaterna(num);
+
+				} else if (cinquinaFatto == false) {
+					checkCiqnuina(num);
+				}
+
+			}
+		});
+	}
+
+	public void checkAmbo(int num) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
 				for (int i = 0; i < numeri.length; i++) {
 					if (num == numeri[i]) {
 						segnati[i] = true;
@@ -202,36 +231,166 @@ public class Client {
 				}
 				String[] n = new String[5];
 				int e = 0;
-				for (int i = 0; i < 9; i++) {
-					if (!item.get(0).getText(i).equals("")) {
-						n[e] = item.get(0).getText(i);
+				for (int j = 0; j < item.size(); j++) {
+					for (int i = 0; i < 9; i++) {
+						if (!item.get(j).getText(i).equals("")) {
+							n[e] = item.get(j).getText(i);
+							e++;
+						}
+					}
+					for (String string : n) {
+
+						if (e > 0) {
+							if (segnati[e] == true && segnati[e - 1] == true) {
+								ambo = true;
+								break;
+							} else {
+								ambo = false;
+							}
+						}
 						e++;
 					}
-				}
-				e = 0;
-				boolean ambo = false;
-				boolean amboFatto = false;
-				for (String string : n) {
-					System.out.print(numeri[e] + " ");
-					System.out.print(segnati[e]);
-					System.out.println(" " + string);
-					if(e>0){
-						if (segnati[e] == true && segnati[e - 1] == true && amboFatto == false) {
-							ambo = true;
-							amboFatto=true;
-							break;
-						} else {
-							ambo = false;
-						}						
+					if (ambo == true) {
+						System.out.println("AMBO");
+						amboFatto = true;
+					} else {
+						System.out.println();
 					}
-					e++;
+					e = 0;
 				}
-				if (ambo == true) {
-					System.out.println("AMBO");
-				} else {
-					System.out.println();
-				}
+			}
+		});
 
+	}
+
+	public void checkTerna(int num) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < numeri.length; i++) {
+					if (num == numeri[i]) {
+						segnati[i] = true;
+					}
+				}
+				String[] n = new String[5];
+				int e = 0;
+				for (int j = 0; j < item.size(); j++) {
+					for (int i = 0; i < 9; i++) {
+						if (!item.get(j).getText(i).equals("")) {
+							n[e] = item.get(j).getText(i);
+							e++;
+						}
+					}
+					for (String string : n) {
+
+						if (e > 0) {
+							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2]) {
+								terna = true;
+								break;
+							} else {
+								terna = false;
+							}
+						}
+						e++;
+					}
+					if (terna == true) {
+						System.out.println("TERNA");
+						ternaFatto = true;
+					} else {
+						System.out.println();
+					}
+					e = 0;
+				}
+			}
+		});
+
+	}
+
+	public void checkQuaterna(int num) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < numeri.length; i++) {
+					if (num == numeri[i]) {
+						segnati[i] = true;
+					}
+				}
+				String[] n = new String[5];
+				int e = 0;
+				for (int j = 0; j < item.size(); j++) {
+					for (int i = 0; i < 9; i++) {
+						if (!item.get(j).getText(i).equals("")) {
+							n[e] = item.get(j).getText(i);
+							e++;
+						}
+					}
+					for (String string : n) {
+
+						if (e > 0) {
+							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2]
+									&& segnati[e - 3] == true) {
+								quaterna = true;
+								break;
+							} else {
+								quaterna = false;
+							}
+						}
+						e++;
+					}
+					if (quaterna == true) {
+						System.out.println("QUATERNA");
+						quaternaFatto = true;
+					} else {
+						System.out.println();
+					}
+					e = 0;
+				}
+			}
+		});
+	}
+
+	public void checkCiqnuina(int num) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < numeri.length; i++) {
+					if (num == numeri[i]) {
+						segnati[i] = true;
+					}
+				}
+				String[] n = new String[5];
+				int e = 0;
+				for (int j = 0; j < item.size(); j++) {
+					for (int i = 0; i < 9; i++) {
+						if (!item.get(j).getText(i).equals("")) {
+							n[e] = item.get(j).getText(i);
+							e++;
+						}
+					}
+					for (String string : n) {
+
+						if (e > 0) {
+							if (segnati[e] == true && segnati[e - 1] == true && segnati[e - 2] && segnati[e - 3] == true
+									&& segnati[e - 4] == true) {
+								cinquina = true;
+								break;
+							} else {
+								cinquina = false;
+							}
+						}
+						e++;
+					}
+					if (cinquina == true) {
+						System.out.println("CINQUINA");
+						cinquinaFatto = true;
+					} else {
+						System.out.println();
+					}
+					e = 0;
+				}
 			}
 		});
 	}
@@ -339,28 +498,28 @@ public class Client {
 			if (i < 10) {
 				item.get(index).setText(0, i + "");
 			}
-			if (i > 10 && i <= 20) {
+			if (i >= 10 && i < 20) {
 				item.get(index).setText(1, i + "");
 			}
-			if (i > 20 && i <= 30) {
+			if (i >= 20 && i < 30) {
 				item.get(index).setText(2, i + "");
 			}
-			if (i > 30 && i <= 40) {
+			if (i >= 30 && i < 40) {
 				item.get(index).setText(3, i + "");
 			}
-			if (i > 40 && i <= 50) {
+			if (i >= 40 && i < 50) {
 				item.get(index).setText(4, i + "");
 			}
-			if (i > 50 && i <= 60) {
+			if (i >= 50 && i < 60) {
 				item.get(index).setText(5, i + "");
 			}
-			if (i > 60 && i <= 70) {
+			if (i >= 60 && i < 70) {
 				item.get(index).setText(6, i + "");
 			}
-			if (i > 70 && i <= 80) {
+			if (i >= 70 && i < 80) {
 				item.get(index).setText(7, i + "");
 			}
-			if (i > 80 && i <= 90) {
+			if (i >= 80 && i <= 90) {
 				item.get(index).setText(8, i + "");
 			}
 			lun++;
