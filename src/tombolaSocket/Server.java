@@ -32,6 +32,16 @@ public class Server {
 	private TableItem tbItem;
 	private Button btnNumero;
 	private List list;
+	Label lblAmbo;
+	boolean ambo = false;
+	Label lblTerna;
+	boolean terna = false;
+	Label lblQuaterna;
+	boolean quaterna = false;
+	Label lblCinquina;
+	boolean cinquina = false;
+	Label lblTombola;
+	boolean tombo = false;
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
 	ArrayList<TableItem> item2 = new ArrayList<TableItem>();
 	ArrayList<Integer> numeriEstratti = new ArrayList<Integer>();
@@ -241,7 +251,7 @@ public class Server {
 				sThread.mandaNumero(num);
 			}
 		});
-		btnNumero.setBounds(199, 290, 75, 25);
+		btnNumero.setBounds(199, 269, 75, 25);
 		btnNumero.setText("Numero");
 
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -251,6 +261,30 @@ public class Server {
 		lblClient.setAlignment(SWT.CENTER);
 		lblClient.setBounds(593, 252, 274, 15);
 		lblClient.setText("Client");
+
+		lblAmbo = new Label(shell, SWT.NONE);
+		lblAmbo.setAlignment(SWT.CENTER);
+		lblAmbo.setBounds(380, 391, 55, 15);
+		lblAmbo.setText("Ambo");
+
+		lblTerna = new Label(shell, SWT.NONE);
+		lblTerna.setAlignment(SWT.CENTER);
+		lblTerna.setBounds(276, 391, 55, 15);
+		lblTerna.setText("Terna");
+
+		lblQuaterna = new Label(shell, SWT.NONE);
+		lblQuaterna.setAlignment(SWT.CENTER);
+		lblQuaterna.setBounds(380, 350, 55, 15);
+		lblQuaterna.setText("Quaterna");
+
+		lblCinquina = new Label(shell, SWT.NONE);
+		lblCinquina.setBounds(276, 350, 55, 15);
+		lblCinquina.setText("Cinquina");
+
+		lblTombola = new Label(shell, SWT.BORDER | SWT.CENTER);
+		lblTombola.setAlignment(SWT.CENTER);
+		lblTombola.setBounds(265, 311, 170, 15);
+		lblTombola.setText("TOMBOLA");
 
 	}
 

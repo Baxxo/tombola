@@ -11,7 +11,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableColumn;
@@ -30,7 +29,6 @@ public class Client {
 	private Table table;
 	private TableItem tbItem;
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
-	// ArrayList<Integer> numeri = new ArrayList<Integer>();
 	ArrayList<Integer> numero = new ArrayList<Integer>();
 	private Text text;
 	Button btnConnettiti;
@@ -50,6 +48,8 @@ public class Client {
 	boolean quaternaFatto = false;
 	boolean cinquina = false;
 	boolean cinquinaFatto = false;
+	boolean tombola = false;
+	boolean tombolaFatto = false;
 
 	/**
 	 * Launch the application.
@@ -84,6 +84,11 @@ public class Client {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
+
+		for (int i = 0; i < 15; i++) {
+			segnati[i] = false;
+		}
+
 		shell = new Shell();
 		shell.setSize(641, 213);
 		shell.setText("Concorrente");
@@ -203,199 +208,311 @@ public class Client {
 						}
 					}
 				}
+				// segno che ho trovato un numero
+				for (int i = 0; i < numeri.length; i++) {
+					if (num == numeri[i]) {
+						segnati[i] = true;
+					}
+				}
 				if (amboFatto == false) {
-					checkAmbo(num);
-				} else if (ternaFatto == false) {
-					checkTerna(num);
+					checkAmbo();
+				} else {
+					if (ternaFatto == false) {
+						checkTerna();
+					} else {
+						if (quaternaFatto == false) {
+							checkQuaterna();
 
-				} else if (quaternaFatto == false) {
-					checkQuaterna(num);
+						} else {
+							if (cinquinaFatto == false) {
+								checkCiqnuina();
+							} else {
+								if (tombolaFatto == false) {
+									checkTombola();
+								}
+							}
+						}
 
-				} else if (cinquinaFatto == false) {
-					checkCiqnuina(num);
+					}
+
+				}
+				if(amboFatto){
+					out.println("ambo");
+				}
+				if(ternaFatto){
+					out.println("terna");
+				}
+				if(quaternaFatto){
+					out.println("quaterna");
+				}
+				if(cinquinaFatto){
+					out.println("cinquina");
+				}
+				if(tombolaFatto){
+					out.println("tombola");
 				}
 
 			}
 		});
 	}
 
-	public void checkAmbo(int num) {
+	public void checkAmbo() {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < numeri.length; i++) {
-					if (num == numeri[i]) {
-						segnati[i] = true;
-					}
-				}
-				String[] n = new String[5];
-				int e = 0;
-				int l = 0;
+				// controllo che ci sia un ambo
 				for (int j = 0; j < item.size(); j++) {
-					for (int i = 0; i < 9; i++) {
-						if (!item.get(j).getText(i).equals("")) {
-							n[e] = item.get(j).getText(i);
-							System.out.println("Numero: " + item.get(j).getText(i));
-							e++;
-						}
-					}
-					for (String string : n) {
-
-						if (e > 0 && l > 0) {
-							if (segnati[l] == true && segnati[l - 1] == true) {
+					if (j == 0) {
+						for (int i = 0; i < 4; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true) {
 								ambo = true;
 								break;
-							} else {
-								ambo = false;
 							}
 						}
-					}
-					if (ambo == true) {
-						System.out.println("AMBO");
-						amboFatto = true;
-					} else {
+						if (ambo == true) {
+							System.out.println("AMBO");
+							amboFatto = true;
+						} else {
+							System.out.println();
+						}
 						System.out.println();
 					}
-					e = 0;
-					l++;
+					if (j == 1) {
+						for (int i = 5; i < 9; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true) {
+								ambo = true;
+								break;
+							}
+						}
+						if (ambo == true) {
+							System.out.println("AMBO");
+							amboFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
+					if (j == 2) {
+						for (int i = 10; i < 14; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true) {
+								ambo = true;
+								break;
+							}
+						}
+						if (ambo == true) {
+							System.out.println("AMBO");
+							amboFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
 				}
 			}
 		});
 
 	}
 
-	public void checkTerna(int num) {
+	public void checkTerna() {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < numeri.length; i++) {
-					if (num == numeri[i]) {
-						segnati[i] = true;
-					}
-				}
-				String[] n = new String[5];
-				int e = 0;
-				int l = 0;
+				// controllo che ci sia una terna
 				for (int j = 0; j < item.size(); j++) {
-					for (int i = 0; i < 9; i++) {
-						if (!item.get(j).getText(i).equals("")) {
-							n[e] = item.get(j).getText(i);
-							e++;
-						}
-					}
-					for (String string : n) {
-
-						if (l > 1) {
-							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true) {
+					if (j == 0) {
+						for (int i = 0; i < 3; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true) {
 								terna = true;
 								break;
-							} else {
-								terna = false;
 							}
 						}
-					}
-					if (terna == true) {
-						System.out.println("TERNA");
-						ternaFatto = true;
-					} else {
+						if (terna) {
+							System.out.println("TERNA");
+							ternaFatto = true;
+						} else {
+							System.out.println();
+						}
 						System.out.println();
 					}
-					e = 0;
-					l++;
+					if (j == 1) {
+						for (int i = 5; i < 8; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true) {
+								terna = true;
+								break;
+							}
+						}
+						if (terna) {
+							System.out.println("TERNA");
+							ternaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
+					if (j == 2) {
+						for (int i = 10; i < 13; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true) {
+								terna = true;
+								break;
+							}
+						}
+						if (terna) {
+							System.out.println("TERNA");
+							ternaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
 				}
 			}
 		});
 
 	}
 
-	public void checkQuaterna(int num) {
+	public void checkQuaterna() {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < numeri.length; i++) {
-					if (num == numeri[i]) {
-						segnati[i] = true;
-					}
-				}
-				String[] n = new String[5];
-				int e = 0;
-				int l = 0;
+				// controllo che ci sia una quaterna
 				for (int j = 0; j < item.size(); j++) {
-					for (int i = 0; i < 9; i++) {
-						if (!item.get(j).getText(i).equals("")) {
-							n[e] = item.get(j).getText(i);
-							e++;
-						}
-					}
-					for (String string : n) {
-
-						if (l > 2) {
-							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true
-									&& segnati[l - 3] == true) {
+					if (j == 0) {
+						for (int i = 0; i < 2; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true) {
 								quaterna = true;
 								break;
-							} else {
-								quaterna = false;
 							}
 						}
-					}
-					if (quaterna == true) {
-						System.out.println("QUATERNA");
-						quaternaFatto = true;
-					} else {
+						if (quaterna) {
+							System.out.println("QUATERNA");
+							quaternaFatto = true;
+						} else {
+							System.out.println();
+						}
 						System.out.println();
 					}
-					e = 0;
-					l++;
+					if (j == 1) {
+						for (int i = 5; i < 7; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true) {
+								quaterna = true;
+								break;
+							}
+						}
+						if (quaterna) {
+							System.out.println("QUATERNA");
+							quaternaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
+					if (j == 2) {
+						for (int i = 10; i < 12; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true) {
+								quaterna = true;
+								break;
+							}
+						}
+						if (quaterna) {
+							System.out.println("QUATERNA");
+							quaternaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
 				}
 			}
 		});
 	}
 
-	public void checkCiqnuina(int num) {
+	public void checkCiqnuina() {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < numeri.length; i++) {
-					if (num == numeri[i]) {
-						segnati[i] = true;
-					}
-				}
-				String[] n = new String[5];
-				int e = 0;
-				int l = 0;
+				// controllo che ci sia una cinquina
 				for (int j = 0; j < item.size(); j++) {
-					for (int i = 0; i < 9; i++) {
-						if (!item.get(j).getText(i).equals("")) {
-							n[e] = item.get(j).getText(i);
-							e++;
-						}
-					}
-					for (String string : n) {
-
-						if (l > 3) {
-							if (segnati[l] == true && segnati[l - 1] == true && segnati[l - 2] == true
-									&& segnati[l - 3] == true && segnati[l - 4] == true) {
+					if (j == 0) {
+						for (int i = 0; i < 1; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true && segnati[i + 4] == true) {
 								cinquina = true;
 								break;
-							} else {
-								cinquina = false;
 							}
 						}
-					}
-					if (cinquina == true) {
-						System.out.println("CINQUINA");
-						quaternaFatto = true;
-					} else {
+						if (cinquina) {
+							System.out.println("CINQUINA");
+							cinquinaFatto = true;
+						} else {
+							System.out.println();
+						}
 						System.out.println();
 					}
-					e = 0;
-					l++;
+					if (j == 1) {
+						for (int i = 5; i < 6; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true && segnati[i + 4] == true) {
+								quaterna = true;
+								break;
+							}
+						}
+						if (cinquina) {
+							System.out.println("CINQUINA");
+							cinquinaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
+					if (j == 2) {
+						for (int i = 10; i < 11; i++) {
+							if (segnati[i] == true && segnati[i + 1] == true && segnati[i + 2] == true
+									&& segnati[i + 3] == true && segnati[i + 4] == true) {
+								quaterna = true;
+								break;
+							}
+						}
+						if (cinquina) {
+							System.out.println("CINQUINA");
+							cinquinaFatto = true;
+						} else {
+							System.out.println();
+						}
+						System.out.println();
+					}
 				}
+			}
+		});
+	}
+
+	public void checkTombola() {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				// controllo che ci sia una tombola
+				for (int i = 0; i < segnati.length; i++) {
+					if (segnati[i] == true) {
+						tombola = true;
+					} else {
+						tombola = false;
+						break;
+					}
+				}
+				if (tombola && tombolaFatto == false) {
+					System.out.println("TOMBOLA");
+					tombolaFatto = true;
+				} else {
+					System.out.println();
+				}
+				System.out.println();
 			}
 		});
 	}
@@ -491,6 +608,7 @@ public class Client {
 		}
 		for (int i = 0; i < 3; i++) {
 			tbItem = new TableItem(table, SWT.NONE);
+
 			item.add(tbItem);
 		}
 		int index = 0;
