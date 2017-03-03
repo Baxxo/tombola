@@ -41,15 +41,15 @@ public class Client {
 	private boolean[] segnati = new boolean[15]; // true se il numero
 													// corrispondente è segnato
 	boolean ambo = false;
-	boolean amboFatto = false;
+	boolean amboFatto;
 	boolean terna = false;
-	boolean ternaFatto = false;
+	boolean ternaFatto;
 	boolean quaterna = false;
-	boolean quaternaFatto = false;
+	boolean quaternaFatto;
 	boolean cinquina = false;
-	boolean cinquinaFatto = false;
+	boolean cinquinaFatto;
 	boolean tombola = false;
-	boolean tombolaFatto = false;
+	boolean tombolaFatto;
 
 	/**
 	 * Launch the application.
@@ -155,6 +155,7 @@ public class Client {
 					ClientReciver cr = new ClientReciver(s, Client.this);
 					cr.start();
 
+					out.println("nome");
 					out.println(nome);
 				} catch (UnknownHostException e1) {
 					e1.printStackTrace();
@@ -187,11 +188,17 @@ public class Client {
 		});
 	}
 
-	public void numeroEstratto(int num) {
+	public void numeroEstratto(int num, String ambo, String terna, String quaterna, String cinquina, String tombola) {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
+				amboFatto = Boolean.parseBoolean(ambo);
+				ternaFatto = Boolean.parseBoolean(terna);
+				quaternaFatto = Boolean.parseBoolean(quaterna);
+				cinquinaFatto = Boolean.parseBoolean(cinquina);
+				tombolaFatto = Boolean.parseBoolean(tombola);
+				System.out.println(ambo + " " + terna + " " + quaterna + " " + cinquina + " " + tombola + " ");
 				text_1.append(num + "  ");
 				for (int i = 0; i < numeri.length; i++) {
 					if (numeri[i] == num) {
@@ -236,22 +243,31 @@ public class Client {
 					}
 
 				}
-				if(amboFatto){
-					out.println("ambo");
+				if (amboFatto) {
+					out.println(true);
+				} else {
+					out.println(false);
 				}
-				if(ternaFatto){
-					out.println("terna");
+				if (ternaFatto) {
+					out.println(true);
+				} else {
+					out.println(false);
 				}
-				if(quaternaFatto){
-					out.println("quaterna");
+				if (quaternaFatto) {
+					out.println(true);
+				} else {
+					out.println(false);
 				}
-				if(cinquinaFatto){
-					out.println("cinquina");
+				if (cinquinaFatto) {
+					out.println(true);
+				} else {
+					out.println(false);
 				}
-				if(tombolaFatto){
-					out.println("tombola");
+				if (tombolaFatto) {
+					out.println(true);
+				} else {
+					out.println(false);
 				}
-
 			}
 		});
 	}

@@ -28,7 +28,6 @@ public class Server {
 
 	protected Shell shell;
 	private Table table;
-	private Table table_1;
 	private TableItem tbItem;
 	private Button btnNumero;
 	private List list;
@@ -43,7 +42,6 @@ public class Server {
 	Label lblTombola;
 	boolean tombo = false;
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
-	ArrayList<TableItem> item2 = new ArrayList<TableItem>();
 	ArrayList<Integer> numeriEstratti = new ArrayList<Integer>();
 	ArrayList<Integer> numeri = new ArrayList<Integer>();
 	static ArrayList<PrintWriter> clientList = new ArrayList<PrintWriter>();
@@ -112,7 +110,7 @@ public class Server {
 		}
 
 		shell = new Shell();
-		shell.setSize(994, 481);
+		shell.setSize(500, 508);
 		shell.setText("Tombola");
 
 		table = new Table(shell, SWT.BORDER);
@@ -174,118 +172,87 @@ public class Server {
 			}
 		}
 
-		table_1 = new Table(shell, SWT.BORDER);
-		table_1.setBounds(531, 36, 424, 200);
-		table_1.setHeaderVisible(true);
-		table_1.setLinesVisible(true);
-
-		TableColumn tableColumn_10 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_10.setWidth(42);
-		tableColumn_10.setResizable(false);
-
-		TableColumn tableColumn_11 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_11.setWidth(42);
-		tableColumn_11.setResizable(false);
-
-		TableColumn tableColumn_12 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_12.setWidth(42);
-		tableColumn_12.setResizable(false);
-
-		TableColumn tableColumn_13 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_13.setWidth(42);
-		tableColumn_13.setResizable(false);
-
-		TableColumn tableColumn_14 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_14.setWidth(42);
-		tableColumn_14.setResizable(false);
-
-		TableColumn tableColumn_15 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_15.setWidth(42);
-		tableColumn_15.setResizable(false);
-
-		TableColumn tableColumn_16 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_16.setWidth(42);
-		tableColumn_16.setResizable(false);
-
-		TableColumn tableColumn_17 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_17.setWidth(42);
-		tableColumn_17.setResizable(false);
-
-		TableColumn tableColumn_18 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_18.setWidth(42);
-		tableColumn_18.setResizable(false);
-
-		TableColumn tableColumn_19 = new TableColumn(table_1, SWT.NONE);
-		tableColumn_19.setWidth(42);
-		tableColumn_19.setResizable(false);
-
-		TableCursor tableCursor_1 = new TableCursor(table_1, SWT.NONE);
-
 		Label lblTabellone = new Label(shell, SWT.NONE);
 		lblTabellone.setBounds(177, 10, 55, 15);
 		lblTabellone.setText("Tabellone");
-
-		Label lblNumeri = new Label(shell, SWT.NONE);
-		lblNumeri.setBounds(692, 10, 55, 15);
-		lblNumeri.setText("Numeri");
-
-		for (int i = 0; i < 9; i++) {
-			tbItem = new TableItem(table_1, SWT.NONE);
-			item2.add(tbItem);
-		}
-
-		l = 0;
-
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 10; j++) {
-				l++;
-				item2.get(i).setText(j, tombola[i][j] + "");
-			}
-		}
 
 		btnNumero = new Button(shell, SWT.NONE);
 		btnNumero.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int num = coloraNumero();
-				sThread.mandaNumero(num);
+				sThread.mandaNumero(num, ambo, terna, quaterna, cinquina, tombo);
 			}
 		});
 		btnNumero.setBounds(199, 269, 75, 25);
 		btnNumero.setText("Numero");
 
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		list.setBounds(593, 291, 274, 124);
+		list.setBounds(306, 308, 145, 124);
 
 		Label lblClient = new Label(shell, SWT.NONE);
 		lblClient.setAlignment(SWT.CENTER);
-		lblClient.setBounds(593, 252, 274, 15);
+		lblClient.setBounds(306, 274, 137, 15);
 		lblClient.setText("Client");
 
 		lblAmbo = new Label(shell, SWT.NONE);
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(380, 391, 55, 15);
+		lblAmbo.setBounds(27, 312, 55, 15);
 		lblAmbo.setText("Ambo");
 
 		lblTerna = new Label(shell, SWT.NONE);
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(276, 391, 55, 15);
+		lblTerna.setBounds(142, 312, 55, 15);
 		lblTerna.setText("Terna");
 
 		lblQuaterna = new Label(shell, SWT.NONE);
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(380, 350, 55, 15);
+		lblQuaterna.setBounds(27, 349, 55, 15);
 		lblQuaterna.setText("Quaterna");
 
 		lblCinquina = new Label(shell, SWT.NONE);
-		lblCinquina.setBounds(276, 350, 55, 15);
+		lblCinquina.setBounds(142, 349, 55, 15);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.BORDER | SWT.CENTER);
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(265, 311, 170, 15);
+		lblTombola.setBounds(27, 395, 170, 15);
 		lblTombola.setText("TOMBOLA");
 
+	}
+
+	public void setVin(boolean ambo, boolean terna, boolean quaterna, boolean cinquina, boolean tombola) {
+		this.ambo = ambo;
+		this.terna = terna;
+		this.quaterna = quaterna;
+		this.cinquina = cinquina;
+		this.tombo = tombola;
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				if (ambo) {
+					lblAmbo.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (terna) {
+					lblTerna.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (quaterna) {
+					lblQuaterna.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (cinquina) {
+					lblCinquina.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (tombola) {
+					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+			}
+		});
 	}
 
 	public void aggiugiClient(String client) {
@@ -305,7 +272,6 @@ public class Server {
 		} else {
 			numInt = numeri.get(index);
 			index++;
-			item2.get(row).setBackground(col, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 
 			if (col == 9) {
 				row++;

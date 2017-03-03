@@ -17,6 +17,11 @@ public class serverThread extends Thread {
 	private static class ServerThread extends Thread {
 		Socket s;
 		private Server server;
+		boolean ambo;
+		boolean terna;
+		boolean quaterna;
+		boolean cinquina;
+		boolean tombola;
 
 		// il costruttore deve ricevere il socket su cui lavorare
 		public ServerThread(Socket s, Server server) {
@@ -32,9 +37,18 @@ public class serverThread extends Thread {
 				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				// quando riceve un messaggio
 				while (true) {
-					String nome = in.readLine();
-					server.aggiugiClient(nome);
-					// manda il messaggio a tutti i client
+					String con = in.readLine();
+					if (con.equalsIgnoreCase("nome")) {
+						String nome = in.readLine();
+						server.aggiugiClient(nome);
+					} else {
+						ambo = Boolean.parseBoolean(in.readLine());
+						terna = Boolean.parseBoolean(in.readLine());
+						quaterna = Boolean.parseBoolean(in.readLine());
+						cinquina = Boolean.parseBoolean(in.readLine());
+						tombola = Boolean.parseBoolean(in.readLine());
+						server.setVin(ambo, terna, quaterna, cinquina, tombola);
+					}
 				}
 
 			} catch (IOException e) {
@@ -65,10 +79,16 @@ public class serverThread extends Thread {
 		}
 
 	}
-	
-	public void mandaNumero(int numero){
+
+	public void mandaNumero(int numero, boolean ambo, boolean terna, boolean quaterna, boolean cinquina,
+			boolean tombola) {
 		for (PrintWriter printWriter : clientList) {
-			printWriter.println(numero+"");
+			printWriter.println(numero + "");
+			printWriter.println(ambo + "");
+			printWriter.println(terna + "");
+			printWriter.println(quaterna + "");
+			printWriter.println(cinquina + "");
+			printWriter.println(tombola + "");
 		}
 	}
 

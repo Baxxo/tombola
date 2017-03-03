@@ -34,12 +34,18 @@ public class ClientReciver extends Thread {
 				// legge il messaggio
 
 				String con = in.readLine();
-				if(con.equalsIgnoreCase("connesso")){
-					c.setCon(con);	
-				}else{
-					c.numeroEstratto(Integer.parseInt(con));
+				if (con.equalsIgnoreCase("connesso")) {
+					c.setCon(con);
+				} else {
+					int num = Integer.parseInt(con);
+					String ambo = in.readLine();
+					String terna = in.readLine();
+					String quaterna = in.readLine();
+					String cinquina = in.readLine();
+					String tombola = in.readLine();
+					c.numeroEstratto(num, ambo, terna, quaterna, cinquina, tombola);
 				}
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
