@@ -195,59 +195,70 @@ public class Server {
 		lblClient.setBounds(306, 274, 137, 15);
 		lblClient.setText("Client");
 
-		lblAmbo = new Label(shell, SWT.NONE);
+		lblAmbo = new Label(shell, SWT.BORDER);
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(27, 312, 55, 15);
+		lblAmbo.setBounds(27, 312, 75, 25);
 		lblAmbo.setText("Ambo");
 
-		lblTerna = new Label(shell, SWT.NONE);
+		lblTerna = new Label(shell, SWT.BORDER);
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(142, 312, 55, 15);
+		lblTerna.setBounds(122, 312, 75, 25);
 		lblTerna.setText("Terna");
 
-		lblQuaterna = new Label(shell, SWT.NONE);
+		lblQuaterna = new Label(shell, SWT.BORDER);
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(27, 349, 55, 15);
+		lblQuaterna.setBounds(27, 349, 75, 25);
 		lblQuaterna.setText("Quaterna");
 
-		lblCinquina = new Label(shell, SWT.NONE);
-		lblCinquina.setBounds(142, 349, 55, 15);
+		lblCinquina = new Label(shell, SWT.BORDER);
+		lblCinquina.setAlignment(SWT.CENTER);
+		lblCinquina.setBounds(122, 349, 75, 25);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.BORDER | SWT.CENTER);
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(27, 395, 170, 15);
+		lblTombola.setBounds(27, 395, 170, 25);
 		lblTombola.setText("TOMBOLA");
 
 	}
 
-	public void setVin(boolean ambo, boolean terna, boolean quaterna, boolean cinquina, boolean tombola) {
-		this.ambo = ambo;
-		this.terna = terna;
-		this.quaterna = quaterna;
-		this.cinquina = cinquina;
-		this.tombo = tombola;
+	public void setVin(String vinto) {
+		if (vinto.equals("ambo")) {
+			ambo = true;
+		}
+		if (vinto.equals("terna")) {
+			terna = true;
+		}
+		if (vinto.equals("quaterna")) {
+			quaterna = true;
+		}
+		if (vinto.equals("cinquina")) {
+			cinquina = true;
+		}
+		if (vinto.equals("tombola")) {
+			tombo = true;
+		}
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
 				if (ambo) {
-					lblAmbo.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblAmbo.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 					lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (terna) {
-					lblTerna.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblTerna.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 					lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (quaterna) {
-					lblQuaterna.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblQuaterna.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 					lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (cinquina) {
-					lblCinquina.setBackground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+					lblCinquina.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 					lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
-				if (tombola) {
+				if (tombo) {
 					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}

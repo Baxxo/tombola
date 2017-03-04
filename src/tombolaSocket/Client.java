@@ -198,7 +198,8 @@ public class Client {
 				quaternaFatto = Boolean.parseBoolean(quaterna);
 				cinquinaFatto = Boolean.parseBoolean(cinquina);
 				tombolaFatto = Boolean.parseBoolean(tombola);
-				System.out.println(ambo + " " + terna + " " + quaterna + " " + cinquina + " " + tombola + " ");
+				System.out.println(
+						"Grafica: " + ambo + " " + terna + " " + quaterna + " " + cinquina + " " + tombola + " ");
 				text_1.append(num + "  ");
 				for (int i = 0; i < numeri.length; i++) {
 					if (numeri[i] == num) {
@@ -242,31 +243,6 @@ public class Client {
 
 					}
 
-				}
-				if (amboFatto) {
-					out.println(true);
-				} else {
-					out.println(false);
-				}
-				if (ternaFatto) {
-					out.println(true);
-				} else {
-					out.println(false);
-				}
-				if (quaternaFatto) {
-					out.println(true);
-				} else {
-					out.println(false);
-				}
-				if (cinquinaFatto) {
-					out.println(true);
-				} else {
-					out.println(false);
-				}
-				if (tombolaFatto) {
-					out.println(true);
-				} else {
-					out.println(false);
 				}
 			}
 		});
@@ -325,6 +301,10 @@ public class Client {
 						System.out.println();
 					}
 				}
+				if (amboFatto) {
+					System.out.println("ciao ambo");
+					out.println("ambo");
+				}
 			}
 		});
 
@@ -382,6 +362,10 @@ public class Client {
 						}
 						System.out.println();
 					}
+				}
+				if (ternaFatto) {
+					System.out.println("ciao terna");
+					out.println("terna");
 				}
 			}
 		});
@@ -444,6 +428,10 @@ public class Client {
 						System.out.println();
 					}
 				}
+				if (quaterna) {
+					System.out.println("ciao quaterna");
+					out.println("quaterna");
+				}
 			}
 		});
 	}
@@ -504,6 +492,10 @@ public class Client {
 						System.out.println();
 					}
 				}
+				if (cinquina) {
+					System.out.println("ciao cinquina");
+					out.println("cinquina");
+				}
 			}
 		});
 	}
@@ -529,6 +521,10 @@ public class Client {
 					System.out.println();
 				}
 				System.out.println();
+				if (tombola) {
+					System.out.println("ciao tombola");
+					out.println("tombola");
+				}
 			}
 		});
 	}

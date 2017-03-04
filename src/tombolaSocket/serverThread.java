@@ -17,11 +17,6 @@ public class serverThread extends Thread {
 	private static class ServerThread extends Thread {
 		Socket s;
 		private Server server;
-		boolean ambo;
-		boolean terna;
-		boolean quaterna;
-		boolean cinquina;
-		boolean tombola;
 
 		// il costruttore deve ricevere il socket su cui lavorare
 		public ServerThread(Socket s, Server server) {
@@ -42,12 +37,8 @@ public class serverThread extends Thread {
 						String nome = in.readLine();
 						server.aggiugiClient(nome);
 					} else {
-						ambo = Boolean.parseBoolean(in.readLine());
-						terna = Boolean.parseBoolean(in.readLine());
-						quaterna = Boolean.parseBoolean(in.readLine());
-						cinquina = Boolean.parseBoolean(in.readLine());
-						tombola = Boolean.parseBoolean(in.readLine());
-						server.setVin(ambo, terna, quaterna, cinquina, tombola);
+						System.out.println("Ricevo da cleint: " + con);
+						server.setVin(con);
 					}
 				}
 
@@ -89,6 +80,8 @@ public class serverThread extends Thread {
 			printWriter.println(quaterna + "");
 			printWriter.println(cinquina + "");
 			printWriter.println(tombola + "");
+			System.out
+					.println("Server: " + ambo + " - " + terna + " - " + quaterna + " - " + cinquina + " - " + tombola);
 		}
 	}
 
