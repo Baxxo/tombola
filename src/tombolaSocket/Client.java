@@ -111,7 +111,7 @@ public class Client {
 
 		table = new Table(shell, SWT.BORDER);
 		table.setLinesVisible(true);
-		table.setBounds(21, 10, 382, 78);
+		table.setBounds(21, 21, 382, 65);
 		table.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -203,39 +203,39 @@ public class Client {
 
 		lblAmbo = new Label(shell, SWT.NONE);
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(24, 122, 55, 15);
+		lblAmbo.setBounds(21, 110, 55, 15);
 		lblAmbo.setText("Ambo");
 
 		lblTerna = new Label(shell, SWT.NONE);
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(95, 122, 55, 15);
+		lblTerna.setBounds(94, 110, 55, 15);
 		lblTerna.setText("Terna");
 
 		lblQuaterna = new Label(shell, SWT.NONE);
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(175, 122, 55, 15);
+		lblQuaterna.setBounds(166, 110, 55, 15);
 		lblQuaterna.setText("Quaterna");
 
 		lblCinquina = new Label(shell, SWT.NONE);
 		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblCinquina.setAlignment(SWT.CENTER);
-		lblCinquina.setBounds(256, 122, 55, 15);
+		lblCinquina.setBounds(255, 110, 55, 15);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.NONE);
 		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(336, 122, 67, 15);
+		lblTombola.setBounds(336, 110, 67, 15);
 		lblTombola.setText("TOMBOLA");
 
 		lblVincita = new Label(shell, SWT.NONE);
 		lblVincita.setAlignment(SWT.RIGHT);
-		lblVincita.setBounds(462, 122, 55, 15);
+		lblVincita.setBounds(462, 110, 55, 15);
 		lblVincita.setText("Vincita: ");
 
 		lblSomma = new Label(shell, SWT.NONE);
 		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		lblSomma.setBounds(522, 122, 55, 15);
+		lblSomma.setBounds(522, 110, 55, 15);
 		lblSomma.setText(somma + "");
 	}
 
@@ -726,11 +726,12 @@ public class Client {
 			}
 
 		}
+
 		for (int i = 0; i < 3; i++) {
 			tbItem = new TableItem(table, SWT.NONE);
-
 			item.add(tbItem);
 		}
+
 		int index = 0;
 		int lun = 0;
 		for (int i : numeri) {
@@ -762,7 +763,7 @@ public class Client {
 			if (i >= 70 && i < 80) {
 				item.get(index).setText(7, i + "");
 			}
-			if (i >= 80 && i <= 90) {
+			if (i >= 80) {
 				item.get(index).setText(8, i + "");
 			}
 			lun++;

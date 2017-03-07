@@ -186,6 +186,7 @@ public class Server {
 		btnNumero.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				Thread thread;
 				int num = coloraNumero();
 				sThread.mandaNumero(num, ambo, terna, quaterna, cinquina, tombo);
 				sThread.setCon(false);
