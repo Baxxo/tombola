@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class serverThread extends Thread {
 
 	// Array di PrintWriter
+	private boolean isStarted = true;
+	Socket s;
 	static ArrayList<PrintWriter> clientList = new ArrayList<PrintWriter>();
 	private Server server;
 
@@ -54,7 +56,10 @@ public class serverThread extends Thread {
 		try {
 			ServerSocket ss = new ServerSocket(9999);
 			while (true) {
-				Socket s = ss.accept();
+				s = ss.accept();
+				if (!isCon()) {
+					s.close();
+				}
 				// aggiunge ad un vettore di client il nuovo client
 				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				clientList.add(out);
@@ -91,6 +96,14 @@ public class serverThread extends Thread {
 
 	public void setServer(Server server) {
 		this.server = server;
+	}
+
+	public boolean isCon() {
+		return isStarted;
+	}
+
+	public void setCon(boolean isStarted) {
+		this.isStarted = isStarted;
 	}
 
 }

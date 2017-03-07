@@ -28,14 +28,24 @@ public class Client {
 	protected Shell shell;
 	private Table table;
 	private TableItem tbItem;
+	private Text text;
+	private Label lblNome;
+	private Button btnConnettiti;
+	private Label lblAmbo;
+	private Label lblTerna;
+	private Label lblQuaterna;
+	private Label lblCinquina;
+	private Label lblTombola;
+	private Label lblVincita;
+	private Label lblSomma;
+
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
 	ArrayList<Integer> numero = new ArrayList<Integer>();
-	private Text text;
 	String output = "";
-	Button btnConnettiti;
-	Label lblNome;
-	Socket s;
+	int somma = 0;
+
 	private PrintWriter out;
+	private Socket s;
 	private Text text_1;
 	private int[] numeri; // numeri contenuti in questa cartella
 	private boolean[] segnati = new boolean[15]; // true se il numero
@@ -50,6 +60,12 @@ public class Client {
 	boolean cinquinaFatto;
 	boolean tombola = false;
 	boolean tombolaFatto;
+
+	boolean amboMio = false;
+	boolean ternaMio = false;
+	boolean quaternaMio = false;
+	boolean cinquinaMio = false;
+	boolean tombolaMio = false;
 
 	/**
 	 * Launch the application.
@@ -90,12 +106,12 @@ public class Client {
 		}
 
 		shell = new Shell();
-		shell.setSize(641, 213);
+		shell.setSize(641, 256);
 		shell.setText("Concorrente");
 
 		table = new Table(shell, SWT.BORDER);
 		table.setLinesVisible(true);
-		table.setBounds(21, 10, 382, 87);
+		table.setBounds(21, 10, 382, 78);
 		table.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -180,10 +196,47 @@ public class Client {
 		btnConnettiti.setEnabled(false);
 
 		text_1 = new Text(shell, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.CANCEL);
-		text_1.setBounds(21, 114, 594, 50);
+		text_1.setBounds(21, 158, 594, 50);
 
 		generaNumeri();
 		btnConnettiti.setEnabled(true);
+
+		lblAmbo = new Label(shell, SWT.NONE);
+		lblAmbo.setAlignment(SWT.CENTER);
+		lblAmbo.setBounds(24, 122, 55, 15);
+		lblAmbo.setText("Ambo");
+
+		lblTerna = new Label(shell, SWT.NONE);
+		lblTerna.setAlignment(SWT.CENTER);
+		lblTerna.setBounds(95, 122, 55, 15);
+		lblTerna.setText("Terna");
+
+		lblQuaterna = new Label(shell, SWT.NONE);
+		lblQuaterna.setAlignment(SWT.CENTER);
+		lblQuaterna.setBounds(175, 122, 55, 15);
+		lblQuaterna.setText("Quaterna");
+
+		lblCinquina = new Label(shell, SWT.NONE);
+		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblCinquina.setAlignment(SWT.CENTER);
+		lblCinquina.setBounds(256, 122, 55, 15);
+		lblCinquina.setText("Cinquina");
+
+		lblTombola = new Label(shell, SWT.NONE);
+		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblTombola.setAlignment(SWT.CENTER);
+		lblTombola.setBounds(336, 122, 67, 15);
+		lblTombola.setText("TOMBOLA");
+
+		lblVincita = new Label(shell, SWT.NONE);
+		lblVincita.setAlignment(SWT.RIGHT);
+		lblVincita.setBounds(462, 122, 55, 15);
+		lblVincita.setText("Vincita: ");
+
+		lblSomma = new Label(shell, SWT.NONE);
+		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblSomma.setBounds(522, 122, 55, 15);
+		lblSomma.setText(somma + "");
 	}
 
 	public void setCon(String c) {
@@ -211,6 +264,26 @@ public class Client {
 				tombolaFatto = Boolean.parseBoolean(tombola);
 				System.out.println(
 						"Grafica: " + ambo + " " + terna + " " + quaterna + " " + cinquina + " " + tombola + " ");
+				if (amboFatto && amboMio) {
+					lblAmbo.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+					lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (ternaFatto && ternaMio) {
+					lblTerna.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+					lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (quaternaFatto && quaternaMio) {
+					lblQuaterna.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+					lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (cinquinaFatto && cinquinaMio) {
+					lblCinquina.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+					lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
+				if (tombolaFatto && tombolaMio) {
+					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				}
 				text_1.append(num + "  ");
 				for (int i = 0; i < numeri.length; i++) {
 					if (numeri[i] == num) {
@@ -275,6 +348,7 @@ public class Client {
 						}
 						if (ambo == true) {
 							System.out.println("AMBO");
+							amboMio = true;
 							amboFatto = true;
 						} else {
 							System.out.println();
@@ -290,6 +364,7 @@ public class Client {
 						}
 						if (ambo == true) {
 							System.out.println("AMBO");
+							amboMio = true;
 							amboFatto = true;
 						} else {
 							System.out.println();
@@ -305,6 +380,7 @@ public class Client {
 						}
 						if (ambo == true) {
 							System.out.println("AMBO");
+							amboMio = true;
 							amboFatto = true;
 						} else {
 							System.out.println();
@@ -315,7 +391,9 @@ public class Client {
 				if (amboFatto) {
 					System.out.println("ciao ambo");
 					out.println("ambo");
+					somma += 10;
 				}
+				lblSomma.setText(somma + "");
 			}
 		});
 
@@ -337,6 +415,7 @@ public class Client {
 						}
 						if (terna) {
 							System.out.println("TERNA");
+							ternaMio = true;
 							ternaFatto = true;
 						} else {
 							System.out.println();
@@ -352,6 +431,7 @@ public class Client {
 						}
 						if (terna) {
 							System.out.println("TERNA");
+							ternaMio = true;
 							ternaFatto = true;
 						} else {
 							System.out.println();
@@ -367,6 +447,7 @@ public class Client {
 						}
 						if (terna) {
 							System.out.println("TERNA");
+							ternaMio = true;
 							ternaFatto = true;
 						} else {
 							System.out.println();
@@ -377,7 +458,9 @@ public class Client {
 				if (ternaFatto) {
 					System.out.println("ciao terna");
 					out.println("terna");
+					somma += 20;
 				}
+				lblSomma.setText(somma + "");
 			}
 		});
 
@@ -400,6 +483,7 @@ public class Client {
 						}
 						if (quaterna) {
 							System.out.println("QUATERNA");
+							quaternaMio = true;
 							quaternaFatto = true;
 						} else {
 							System.out.println();
@@ -416,6 +500,7 @@ public class Client {
 						}
 						if (quaterna) {
 							System.out.println("QUATERNA");
+							quaternaMio = true;
 							quaternaFatto = true;
 						} else {
 							System.out.println();
@@ -432,6 +517,7 @@ public class Client {
 						}
 						if (quaterna) {
 							System.out.println("QUATERNA");
+							quaternaMio = true;
 							quaternaFatto = true;
 						} else {
 							System.out.println();
@@ -442,7 +528,9 @@ public class Client {
 				if (quaterna) {
 					System.out.println("ciao quaterna");
 					out.println("quaterna");
+					somma += 50;
 				}
+				lblSomma.setText(somma + "");
 			}
 		});
 	}
@@ -464,6 +552,7 @@ public class Client {
 						}
 						if (cinquina) {
 							System.out.println("CINQUINA");
+							cinquinaMio = true;
 							cinquinaFatto = true;
 						} else {
 							System.out.println();
@@ -480,6 +569,7 @@ public class Client {
 						}
 						if (cinquina) {
 							System.out.println("CINQUINA");
+							cinquinaMio = true;
 							cinquinaFatto = true;
 						} else {
 							System.out.println();
@@ -497,6 +587,7 @@ public class Client {
 						if (cinquina) {
 							if (!item.get(2).getChecked()) {
 								System.out.println("CINQUINA");
+								cinquinaMio = true;
 								cinquinaFatto = true;
 							}
 						} else {
@@ -508,7 +599,9 @@ public class Client {
 				if (cinquina) {
 					System.out.println("ciao cinquina");
 					out.println("cinquina");
+					somma += 100;
 				}
+				lblSomma.setText(somma + "");
 			}
 		});
 	}
@@ -529,6 +622,7 @@ public class Client {
 				}
 				if (tombola && tombolaFatto == false) {
 					System.out.println("TOMBOLA");
+					tombolaMio = true;
 					tombolaFatto = true;
 				} else {
 					System.out.println();
@@ -537,7 +631,9 @@ public class Client {
 				if (tombola) {
 					System.out.println("ciao tombola");
 					out.println("tombola");
+					somma += 500;
 				}
+				lblSomma.setText(somma + "");
 			}
 		});
 	}

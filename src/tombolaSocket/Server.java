@@ -188,6 +188,7 @@ public class Server {
 			public void widgetSelected(SelectionEvent e) {
 				int num = coloraNumero();
 				sThread.mandaNumero(num, ambo, terna, quaterna, cinquina, tombo);
+				sThread.setCon(false);
 			}
 		});
 		btnNumero.setBounds(199, 269, 75, 25);
@@ -212,16 +213,19 @@ public class Server {
 		lblTerna.setText("Terna");
 
 		lblQuaterna = new Label(shell, SWT.BORDER);
+		lblQuaterna.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblQuaterna.setAlignment(SWT.CENTER);
 		lblQuaterna.setBounds(27, 349, 75, 25);
 		lblQuaterna.setText("Quaterna");
 
 		lblCinquina = new Label(shell, SWT.BORDER);
+		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblCinquina.setAlignment(SWT.CENTER);
 		lblCinquina.setBounds(122, 349, 75, 25);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.BORDER | SWT.CENTER);
+		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD | SWT.ITALIC));
 		lblTombola.setAlignment(SWT.CENTER);
 		lblTombola.setBounds(27, 395, 170, 25);
 		lblTombola.setText("TOMBOLA");
