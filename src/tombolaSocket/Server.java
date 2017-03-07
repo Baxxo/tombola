@@ -12,17 +12,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.custom.TableCursor;
 import org.eclipse.wb.swt.SWTResourceManager;
-import org.w3c.dom.events.Event;
-import org.w3c.dom.events.EventListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Slider;
-import org.eclipse.swt.widgets.Text;
 
 public class Server {
 
@@ -77,7 +72,7 @@ public class Server {
 		createContents();
 		shell.open();
 		shell.layout();
-		ClientReciver client = new ClientReciver(this);
+		new ClientReciver(this);
 		sThread = new serverThread();
 		sThread.setServer(Server.this);
 		Thread t = new Thread(sThread);
@@ -114,9 +109,20 @@ public class Server {
 		shell.setText("Tombola");
 
 		table = new Table(shell, SWT.BORDER);
-		table.setHeaderVisible(true);
-		table.setBounds(27, 36, 424, 200);
 		table.setLinesVisible(true);
+		table.setBounds(27, 36, 424, 200);
+		table.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				table.deselectAll();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				table.deselectAll();
+			}
+		});
 
 		TableColumn tableColumn = new TableColumn(table, SWT.NONE);
 		tableColumn.setWidth(42);

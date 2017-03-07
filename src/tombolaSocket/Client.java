@@ -4,7 +4,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -22,6 +21,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 
 public class Client {
 
@@ -31,11 +31,11 @@ public class Client {
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
 	ArrayList<Integer> numero = new ArrayList<Integer>();
 	private Text text;
+	String output = "";
 	Button btnConnettiti;
 	Label lblNome;
 	Socket s;
 	private PrintWriter out;
-	private BufferedReader in;
 	private Text text_1;
 	private int[] numeri; // numeri contenuti in questa cartella
 	private boolean[] segnati = new boolean[15]; // true se il numero
@@ -95,8 +95,19 @@ public class Client {
 
 		table = new Table(shell, SWT.BORDER);
 		table.setLinesVisible(true);
-		table.setHeaderVisible(true);
 		table.setBounds(21, 10, 382, 87);
+		table.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				table.deselectAll();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				table.deselectAll();
+			}
+		});
 
 		TableColumn tableColumn = new TableColumn(table, SWT.NONE);
 		tableColumn.setWidth(42);
@@ -484,8 +495,10 @@ public class Client {
 							}
 						}
 						if (cinquina) {
-							System.out.println("CINQUINA");
-							cinquinaFatto = true;
+							if (!item.get(2).getChecked()) {
+								System.out.println("CINQUINA");
+								cinquinaFatto = true;
+							}
 						} else {
 							System.out.println();
 						}
@@ -601,7 +614,6 @@ public class Client {
 	public void stampa() {
 		final String spacer = "   ";
 		for (int r = 0; r < 3; r++) {
-			String output = "";
 			int d = 0;
 			for (int c = 0; c < 5; c++) {
 				int index = r * 5 + c;
