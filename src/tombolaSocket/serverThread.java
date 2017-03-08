@@ -40,7 +40,15 @@ public class serverThread extends Thread {
 						String nome = in.readLine();
 						server.aggiugiClient(nome);
 					} else {
-						server.setVin(con);
+						if (con.equals("tombola")) {
+							String c = in.readLine();
+							System.out.println("ciao " + c);
+							server.vincitore = c;
+							server.setVin(con);
+						} else {
+							server.setVin(con);
+						}
+
 					}
 				}
 

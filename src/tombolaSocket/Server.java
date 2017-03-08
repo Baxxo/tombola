@@ -52,6 +52,8 @@ public class Server {
 	int tombola[][] = new int[9][10];
 	Thread tServer;
 	serverThread sThread;
+	String vincitore="";
+	private Label lblClient;
 
 	/**
 	 * Launch the application.
@@ -189,6 +191,12 @@ public class Server {
 		btnNumero.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				if(list.getItemCount()==0){
+					JPanel panel = new JPanel();
+					JOptionPane.showMessageDialog(panel, "Attenzione! \nNessun client è connesso",
+							"", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				Thread thread;
 				int num = coloraNumero();
 				sThread.mandaNumero(num, ambo, terna, quaterna, cinquina, tombo);
@@ -201,7 +209,7 @@ public class Server {
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.setBounds(306, 308, 145, 124);
 
-		Label lblClient = new Label(shell, SWT.BORDER);
+		lblClient = new Label(shell, SWT.BORDER);
 		lblClient.setAlignment(SWT.CENTER);
 		lblClient.setBounds(306, 274, 137, 15);
 		lblClient.setText("Client");
@@ -237,10 +245,6 @@ public class Server {
 	}
 
 	public void setVin(String vinto) {
-		String vittoria;
-		String[] parts = vinto.split("/");
-		vittoria = parts[1];
-		vinto = parts[0];
 		if (vinto.equals("ambo")) {
 			ambo = true;
 		}
@@ -255,6 +259,7 @@ public class Server {
 		}
 		if (vinto.equals("tombola")) {
 			tombo = true;
+			
 		}
 		Display.getDefault().asyncExec(new Runnable() {
 
@@ -281,8 +286,8 @@ public class Server {
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 					btnNumero.setEnabled(false);
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel, "Attenzione! il giocatore " + vittoria + " ha fatto TOMBOLA!",
-							"TOMBOLA", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(panel, "Attenzione!\nil giocatore " + vincitore + " ha fatto tombola!",
+							"", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

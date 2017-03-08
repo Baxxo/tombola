@@ -11,6 +11,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -174,7 +177,11 @@ public class Client {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String nome = text.getText();
-				btnConnettiti.setText(nome);
+				if(nome.equals("")){
+					JPanel panel = new JPanel();
+					JOptionPane.showMessageDialog(panel, "Attenzione!\ninserisci il tuo nome!", "",
+							JOptionPane.WARNING_MESSAGE);
+				}
 				try {
 					s = new Socket("localhost", 9999);
 					out = new PrintWriter(s.getOutputStream(), true);
@@ -187,7 +194,9 @@ public class Client {
 				} catch (UnknownHostException e1) {
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					JPanel panel = new JPanel();
+					JOptionPane.showMessageDialog(panel, "Attenzione!\nnessun server!", "",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -197,9 +206,6 @@ public class Client {
 
 		text_1 = new Text(shell, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.CANCEL);
 		text_1.setBounds(21, 158, 594, 50);
-
-		generaNumeri();
-		btnConnettiti.setEnabled(true);
 
 		lblAmbo = new Label(shell, SWT.NONE);
 		lblAmbo.setAlignment(SWT.CENTER);
@@ -237,6 +243,9 @@ public class Client {
 		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblSomma.setBounds(522, 110, 55, 15);
 		lblSomma.setText(somma + "");
+
+		generaNumeri();
+		btnConnettiti.setEnabled(true);
 	}
 
 	public void setCon(String c) {
@@ -247,6 +256,7 @@ public class Client {
 				btnConnettiti.setText(c);
 				if (c.equalsIgnoreCase("connesso")) {
 					btnConnettiti.setEnabled(false);
+					text.setEditable(false);
 				}
 			}
 		});
@@ -347,10 +357,7 @@ public class Client {
 						if (ambo == true) {
 							amboMio = true;
 							amboFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 1) {
 						for (int i = 5; i < 9; i++) {
@@ -362,10 +369,7 @@ public class Client {
 						if (ambo == true) {
 							amboMio = true;
 							amboFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 2) {
 						for (int i = 10; i < 14; i++) {
@@ -377,10 +381,7 @@ public class Client {
 						if (ambo == true) {
 							amboMio = true;
 							amboFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 				}
 				if (amboFatto) {
@@ -434,10 +435,7 @@ public class Client {
 						if (terna) {
 							ternaMio = true;
 							ternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 				}
 				if (ternaFatto) {
@@ -522,7 +520,6 @@ public class Client {
 							}
 						}
 						if (cinquina) {
-							System.out.println("CINQUINA");
 							cinquinaMio = true;
 							cinquinaFatto = true;
 						}
@@ -536,7 +533,6 @@ public class Client {
 							}
 						}
 						if (cinquina) {
-							System.out.println("CINQUINA");
 							cinquinaMio = true;
 							cinquinaFatto = true;
 						}
@@ -554,7 +550,7 @@ public class Client {
 								cinquinaMio = true;
 								cinquinaFatto = true;
 							}
-						} 
+						}
 					}
 				}
 				if (cinquina) {
@@ -581,12 +577,13 @@ public class Client {
 					}
 				}
 				if (tombola && tombolaFatto == false) {
-					System.out.println("TOMBOLA");
 					tombolaMio = true;
 					tombolaFatto = true;
 				}
 				if (tombola) {
-					out.println("tombola/" + lblNome.getText());
+					out.println("tombola");
+					System.out.println("Client: " + text.getText());
+					out.println(text.getText());
 					somma += 500;
 				}
 				lblSomma.setText(somma + "");
