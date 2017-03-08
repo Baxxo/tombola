@@ -43,8 +43,6 @@ public class ClientReciver extends Thread {
 					String quaterna = in.readLine();
 					String cinquina = in.readLine();
 					String tombola = in.readLine();
-					System.out.println("Client: " + ambo + " - " + terna + " - " + quaterna + " - " + cinquina + " - "
-							+ tombola + " - ");
 					c.numeroEstratto(num, ambo, terna, quaterna, cinquina, tombola);
 				}
 

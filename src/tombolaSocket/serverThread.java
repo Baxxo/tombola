@@ -13,6 +13,7 @@ public class serverThread extends Thread {
 	// Array di PrintWriter
 	private boolean isStarted = true;
 	Socket s;
+	ServerSocket ss;
 	static ArrayList<PrintWriter> clientList = new ArrayList<PrintWriter>();
 	private Server server;
 
@@ -39,7 +40,6 @@ public class serverThread extends Thread {
 						String nome = in.readLine();
 						server.aggiugiClient(nome);
 					} else {
-						System.out.println("Ricevo da cleint: " + con);
 						server.setVin(con);
 					}
 				}
@@ -54,7 +54,7 @@ public class serverThread extends Thread {
 	public void run() {
 		// crea un server spocket in ascolto
 		try {
-			ServerSocket ss = new ServerSocket(9999);
+			ss = new ServerSocket(9999);
 			while (true) {
 				s = ss.accept();
 				if (!isCon()) {
@@ -85,8 +85,6 @@ public class serverThread extends Thread {
 			printWriter.println(quaterna + "");
 			printWriter.println(cinquina + "");
 			printWriter.println(tombola + "");
-			System.out
-					.println("Server: " + ambo + " - " + terna + " - " + quaterna + " - " + cinquina + " - " + tombola);
 		}
 	}
 

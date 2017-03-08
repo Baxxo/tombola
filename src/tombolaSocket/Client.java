@@ -262,8 +262,6 @@ public class Client {
 				quaternaFatto = Boolean.parseBoolean(quaterna);
 				cinquinaFatto = Boolean.parseBoolean(cinquina);
 				tombolaFatto = Boolean.parseBoolean(tombola);
-				System.out.println(
-						"Grafica: " + ambo + " " + terna + " " + quaterna + " " + cinquina + " " + tombola + " ");
 				if (amboFatto && amboMio) {
 					lblAmbo.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 					lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
@@ -347,7 +345,6 @@ public class Client {
 							}
 						}
 						if (ambo == true) {
-							System.out.println("AMBO");
 							amboMio = true;
 							amboFatto = true;
 						} else {
@@ -363,7 +360,6 @@ public class Client {
 							}
 						}
 						if (ambo == true) {
-							System.out.println("AMBO");
 							amboMio = true;
 							amboFatto = true;
 						} else {
@@ -379,7 +375,6 @@ public class Client {
 							}
 						}
 						if (ambo == true) {
-							System.out.println("AMBO");
 							amboMio = true;
 							amboFatto = true;
 						} else {
@@ -389,7 +384,6 @@ public class Client {
 					}
 				}
 				if (amboFatto) {
-					System.out.println("ciao ambo");
 					out.println("ambo");
 					somma += 10;
 				}
@@ -414,13 +408,9 @@ public class Client {
 							}
 						}
 						if (terna) {
-							System.out.println("TERNA");
 							ternaMio = true;
 							ternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 1) {
 						for (int i = 5; i < 8; i++) {
@@ -430,13 +420,9 @@ public class Client {
 							}
 						}
 						if (terna) {
-							System.out.println("TERNA");
 							ternaMio = true;
 							ternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 2) {
 						for (int i = 10; i < 13; i++) {
@@ -446,7 +432,6 @@ public class Client {
 							}
 						}
 						if (terna) {
-							System.out.println("TERNA");
 							ternaMio = true;
 							ternaFatto = true;
 						} else {
@@ -456,7 +441,6 @@ public class Client {
 					}
 				}
 				if (ternaFatto) {
-					System.out.println("ciao terna");
 					out.println("terna");
 					somma += 20;
 				}
@@ -482,13 +466,9 @@ public class Client {
 							}
 						}
 						if (quaterna) {
-							System.out.println("QUATERNA");
 							quaternaMio = true;
 							quaternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 1) {
 						for (int i = 5; i < 7; i++) {
@@ -499,13 +479,9 @@ public class Client {
 							}
 						}
 						if (quaterna) {
-							System.out.println("QUATERNA");
 							quaternaMio = true;
 							quaternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 2) {
 						for (int i = 10; i < 12; i++) {
@@ -516,17 +492,12 @@ public class Client {
 							}
 						}
 						if (quaterna) {
-							System.out.println("QUATERNA");
 							quaternaMio = true;
 							quaternaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 				}
 				if (quaterna) {
-					System.out.println("ciao quaterna");
 					out.println("quaterna");
 					somma += 50;
 				}
@@ -554,10 +525,7 @@ public class Client {
 							System.out.println("CINQUINA");
 							cinquinaMio = true;
 							cinquinaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 1) {
 						for (int i = 5; i < 6; i++) {
@@ -571,10 +539,7 @@ public class Client {
 							System.out.println("CINQUINA");
 							cinquinaMio = true;
 							cinquinaFatto = true;
-						} else {
-							System.out.println();
 						}
-						System.out.println();
 					}
 					if (j == 2) {
 						for (int i = 10; i < 11; i++) {
@@ -586,18 +551,13 @@ public class Client {
 						}
 						if (cinquina) {
 							if (!item.get(2).getChecked()) {
-								System.out.println("CINQUINA");
 								cinquinaMio = true;
 								cinquinaFatto = true;
 							}
-						} else {
-							System.out.println();
-						}
-						System.out.println();
+						} 
 					}
 				}
 				if (cinquina) {
-					System.out.println("ciao cinquina");
 					out.println("cinquina");
 					somma += 100;
 				}
@@ -624,13 +584,9 @@ public class Client {
 					System.out.println("TOMBOLA");
 					tombolaMio = true;
 					tombolaFatto = true;
-				} else {
-					System.out.println();
 				}
-				System.out.println();
 				if (tombola) {
-					System.out.println("ciao tombola");
-					out.println("tombola");
+					out.println("tombola/" + lblNome.getText());
 					somma += 500;
 				}
 				lblSomma.setText(somma + "");

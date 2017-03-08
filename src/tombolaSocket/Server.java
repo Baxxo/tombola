@@ -8,6 +8,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -192,13 +195,13 @@ public class Server {
 				sThread.setCon(false);
 			}
 		});
-		btnNumero.setBounds(199, 269, 75, 25);
+		btnNumero.setBounds(187, 258, 75, 25);
 		btnNumero.setText("Numero");
 
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.setBounds(306, 308, 145, 124);
 
-		Label lblClient = new Label(shell, SWT.NONE);
+		Label lblClient = new Label(shell, SWT.BORDER);
 		lblClient.setAlignment(SWT.CENTER);
 		lblClient.setBounds(306, 274, 137, 15);
 		lblClient.setText("Client");
@@ -234,6 +237,10 @@ public class Server {
 	}
 
 	public void setVin(String vinto) {
+		String vittoria;
+		String[] parts = vinto.split("/");
+		vittoria = parts[1];
+		vinto = parts[0];
 		if (vinto.equals("ambo")) {
 			ambo = true;
 		}
@@ -272,6 +279,10 @@ public class Server {
 				if (tombo) {
 					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+					btnNumero.setEnabled(false);
+					JPanel panel = new JPanel();
+					JOptionPane.showMessageDialog(panel, "Attenzione! il giocatore " + vittoria + " ha fatto TOMBOLA!",
+							"TOMBOLA", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
