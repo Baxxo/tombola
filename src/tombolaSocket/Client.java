@@ -113,6 +113,8 @@ public class Client {
 		shell.setText("Concorrente");
 
 		table = new Table(shell, SWT.BORDER);
+		table.setForeground(SWTResourceManager.getColor(0, 0, 0));
+		table.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		table.setLinesVisible(true);
 		table.setBounds(21, 21, 382, 65);
 		table.addSelectionListener(new SelectionListener() {
@@ -170,14 +172,17 @@ public class Client {
 		lblNome.setText("Nome:");
 
 		text = new Text(shell, SWT.BORDER);
+		text.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		text.setForeground(SWTResourceManager.getColor(255, 215, 0));
 		text.setBounds(522, 10, 76, 21);
 
-		btnConnettiti = new Button(shell, SWT.NONE);
+		btnConnettiti = new Button(shell, SWT.BORDER | SWT.CENTER);
+		btnConnettiti.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		btnConnettiti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String nome = text.getText();
-				if(nome.equals("")){
+				if (nome.equals("")) {
 					JPanel panel = new JPanel();
 					JOptionPane.showMessageDialog(panel, "Attenzione!\ninserisci il tuo nome!", "",
 							JOptionPane.WARNING_MESSAGE);
@@ -202,33 +207,39 @@ public class Client {
 		});
 		btnConnettiti.setBounds(495, 54, 75, 25);
 		btnConnettiti.setText("Connettiti");
-		btnConnettiti.setEnabled(false);
 
 		text_1 = new Text(shell, SWT.BORDER | SWT.READ_ONLY | SWT.H_SCROLL | SWT.CANCEL);
+		text_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		text_1.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		text_1.setBounds(21, 158, 594, 50);
 
 		lblAmbo = new Label(shell, SWT.NONE);
+		lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblAmbo.setAlignment(SWT.CENTER);
 		lblAmbo.setBounds(21, 110, 55, 15);
 		lblAmbo.setText("Ambo");
 
 		lblTerna = new Label(shell, SWT.NONE);
+		lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblTerna.setAlignment(SWT.CENTER);
 		lblTerna.setBounds(94, 110, 55, 15);
 		lblTerna.setText("Terna");
 
 		lblQuaterna = new Label(shell, SWT.NONE);
+		lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblQuaterna.setAlignment(SWT.CENTER);
 		lblQuaterna.setBounds(166, 110, 55, 15);
 		lblQuaterna.setText("Quaterna");
 
 		lblCinquina = new Label(shell, SWT.NONE);
+		lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblCinquina.setAlignment(SWT.CENTER);
 		lblCinquina.setBounds(255, 110, 55, 15);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.NONE);
+		lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblTombola.setAlignment(SWT.CENTER);
 		lblTombola.setBounds(336, 110, 67, 15);
@@ -240,12 +251,12 @@ public class Client {
 		lblVincita.setText("Vincita: ");
 
 		lblSomma = new Label(shell, SWT.NONE);
+		lblSomma.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblSomma.setBounds(522, 110, 55, 15);
 		lblSomma.setText(somma + "");
 
 		generaNumeri();
-		btnConnettiti.setEnabled(true);
 	}
 
 	public void setCon(String c) {
@@ -300,6 +311,7 @@ public class Client {
 								if (!item.get(j).getText(l).equals("")) {
 									if (Integer.parseInt(item.get(j).getText(l)) == num) {
 										item.get(j).setBackground(l, SWTResourceManager.getColor(SWT.COLOR_GREEN));
+										item.get(j).setForeground(l, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 									}
 
 								}
