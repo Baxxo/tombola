@@ -22,6 +22,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
+
 public class Server {
 
 	protected Shell shell;
@@ -56,6 +57,12 @@ public class Server {
 	String output = "";
 	private Label lblClient;
 	private int[] numeriClient; // numeri contenuti in questa cartella
+
+	String vincitoreAmbo = "";
+	String vincitoreTerna = "";
+	String vincitoreQuaterna = "";
+	String vincitoreCinquina = "";
+	String vincitoreTombola = "";
 
 	/**
 	 * Launch the application.
@@ -269,20 +276,26 @@ public class Server {
 	public void setVin(String vinto) {
 		if (vinto.equals("ambo")) {
 			ambo = true;
+			vincitoreAmbo = vincitore;
 		}
 		if (vinto.equals("terna")) {
 			terna = true;
+			vincitoreTerna = vincitore;
 		}
 		if (vinto.equals("quaterna")) {
 			quaterna = true;
+			vincitoreQuaterna = vincitore;
 		}
 		if (vinto.equals("cinquina")) {
 			cinquina = true;
+			vincitoreCinquina = vincitore;
 		}
 		if (vinto.equals("tombola")) {
 			tombo = true;
+			vincitoreTombola = vincitore;
 
 		}
+		sThread.vincite(vincitoreAmbo, vincitoreTerna, vincitoreQuaterna, vincitoreCinquina, vincitoreTombola);
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
@@ -401,6 +414,7 @@ public class Server {
 		return numInt;
 
 	}
+
 	public int[] generaNumeri() {
 
 		numeriClient = new int[15];

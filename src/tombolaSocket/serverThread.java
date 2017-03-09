@@ -41,21 +41,19 @@ public class serverThread extends Thread {
 						String nome = in.readLine();
 						server.aggiugiClient(nome);
 					} else {
-						if (con.equals("tombola")) {
-							String c = in.readLine();
-							server.vincitore = c;
-							server.setVin(con);
-						} else {
-							server.setVin(con);
-						}
-
+						String c = in.readLine();
+						server.vincitore = c;
+						server.setVin(con);
 					}
 				}
 
-			} catch (IOException e) {
+			} catch (
+
+			IOException e) {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	@Override

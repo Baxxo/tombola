@@ -39,11 +39,11 @@ public class Client {
 	private Label lblTombola;
 	private Label lblVincita;
 	private Label lblSomma;
-	 Label lblAmbofatto;
-		Label lblTernafatto;
-	 Label lblQuaternafatto;
-	 Label lblCinquinafatto;
-	 Label lblTombolafatto;
+	Label lblAmbofatto;
+	Label lblTernafatto;
+	Label lblQuaternafatto;
+	Label lblCinquinafatto;
+	Label lblTombolafatto;
 	private TableItem tbItem;
 
 	ArrayList<TableItem> item = new ArrayList<TableItem>();
@@ -172,11 +172,6 @@ public class Client {
 		tableColumn_8.setWidth(42);
 		tableColumn_8.setResizable(false);
 
-		/*
-		 * for (int i = 0; i < 3; i++) { tbItem = new TableItem(table,
-		 * SWT.NONE); item.add(tbItem); }
-		 */
-
 		lblNome = new Label(shell, SWT.NONE);
 		lblNome.setBackground(SWTResourceManager.getColor(255, 255, 255));
 		lblNome.setAlignment(SWT.RIGHT);
@@ -232,42 +227,76 @@ public class Client {
 		lblAmbo.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(21, 112, 65, 21);
+		lblAmbo.setBounds(21, 92, 65, 21);
 		lblAmbo.setText("Ambo");
-		lblAmbo.setBackground(SWTResourceManager.getColor(255, 204, 153));
+		lblAmbo.setBackground(SWTResourceManager.getColor(255, 102, 102));
 
 		lblTerna = new Label(shell, SWT.NONE);
 		lblTerna.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(86, 112, 65, 21);
+		lblTerna.setBounds(80, 92, 65, 21);
 		lblTerna.setText("Terna");
-		lblTerna.setBackground(SWTResourceManager.getColor(255, 204, 153));
+		lblTerna.setBackground(SWTResourceManager.getColor(255, 102, 102));
 
 		lblQuaterna = new Label(shell, SWT.NONE);
 		lblQuaterna.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
 		lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(151, 112, 94, 21);
+		lblQuaterna.setBounds(145, 92, 94, 21);
 		lblQuaterna.setText("Quaterna");
-		lblQuaterna.setBackground(SWTResourceManager.getColor(255, 204, 153));
+		lblQuaterna.setBackground(SWTResourceManager.getColor(255, 102, 102));
 
 		lblCinquina = new Label(shell, SWT.NONE);
 		lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
 		lblCinquina.setAlignment(SWT.CENTER);
-		lblCinquina.setBounds(245, 112, 87, 21);
+		lblCinquina.setBounds(239, 92, 87, 21);
 		lblCinquina.setText("Cinquina");
-		lblCinquina.setBackground(SWTResourceManager.getColor(255, 204, 153));
+		lblCinquina.setBackground(SWTResourceManager.getColor(255, 102, 102));
 
 		lblTombola = new Label(shell, SWT.NONE);
-		lblTombola.setBackground(SWTResourceManager.getColor(255, 255, 255));
 		lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(332, 112, 76, 21);
+		lblTombola.setBounds(326, 92, 76, 21);
 		lblTombola.setText("TOMBOLA");
-		lblTombola.setBackground(SWTResourceManager.getColor(255, 204, 153));
+		lblTombola.setBackground(SWTResourceManager.getColor(255, 102, 102));
+
+		lblAmbofatto = new Label(shell, SWT.NONE);
+		lblAmbofatto.setBounds(21, 134, 65, 18);
+		lblAmbofatto.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblAmbofatto.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblAmbofatto.setAlignment(SWT.CENTER);
+		lblAmbofatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
+
+		lblTernafatto = new Label(shell, SWT.NONE);
+		lblTernafatto.setBounds(86, 134, 65, 18);
+		lblTernafatto.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblTernafatto.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblTernafatto.setAlignment(SWT.CENTER);
+		lblTernafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
+
+		lblQuaternafatto = new Label(shell, SWT.NONE);
+		lblQuaternafatto.setBounds(151, 134, 94, 18);
+		lblQuaternafatto.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
+		lblQuaternafatto.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblQuaternafatto.setAlignment(SWT.CENTER);
+		lblQuaternafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
+
+		lblCinquinafatto = new Label(shell, SWT.NONE);
+		lblCinquinafatto.setBounds(245, 134, 87, 18);
+		lblCinquinafatto.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblCinquinafatto.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
+		lblCinquinafatto.setAlignment(SWT.CENTER);
+		lblCinquinafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
+
+		lblTombolafatto = new Label(shell, SWT.NONE);
+		lblTombolafatto.setBounds(332, 134, 76, 18);
+		lblTombolafatto.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblTombolafatto.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
+		lblTombolafatto.setAlignment(SWT.CENTER);
+		lblTombolafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblVincita = new Label(shell, SWT.NONE);
 		lblVincita.setBackground(SWTResourceManager.getColor(255, 255, 255));
@@ -285,26 +314,13 @@ public class Client {
 		lblSomma.setText(somma + "€");
 		lblSomma.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
-		lblAmbofatto = new Label(shell, SWT.NONE);
-		lblAmbofatto.setBounds(21, 137, 55, 15);
-		lblAmbofatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
-
-		lblTernafatto = new Label(shell, SWT.NONE);
-		lblTernafatto.setBounds(96, 137, 55, 15);
-		lblTernafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
-
-		lblQuaternafatto = new Label(shell, SWT.NONE);
-		lblQuaternafatto.setBounds(173, 137, 55, 15);
-		lblQuaternafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
-
-		lblCinquinafatto = new Label(shell, SWT.NONE);
-		lblCinquinafatto.setBounds(255, 139, 71, 15);
-		lblCinquinafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
-
-		lblTombolafatto = new Label(shell, SWT.NONE);
-		lblTombolafatto.setBounds(338, 137, 65, 15);
-		lblTombolafatto.setBackground(SWTResourceManager.getColor(255, 204, 153));
-
+		Label lblGiocatori = new Label(shell, SWT.BORDER);
+		lblGiocatori.setAlignment(SWT.CENTER);
+		lblGiocatori.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
+		lblGiocatori.setBounds(21, 113, 382, 20);
+		lblGiocatori.setText("GIOCATORI");
+		lblGiocatori.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblGiocatori.setBackground(SWTResourceManager.getColor(255, 204, 153));
 	}
 
 	public void setCon(String c) {
@@ -446,6 +462,7 @@ public class Client {
 				}
 				if (amboFatto) {
 					out.println("ambo");
+					out.println(text.getText());
 					somma += 10;
 				}
 				lblSomma.setText(somma + "€");
@@ -500,6 +517,7 @@ public class Client {
 				}
 				if (ternaFatto) {
 					out.println("terna");
+					out.println(text.getText());
 					somma += 20;
 				}
 				lblSomma.setText(somma + "€");
@@ -557,6 +575,7 @@ public class Client {
 				}
 				if (quaterna) {
 					out.println("quaterna");
+					out.println(text.getText());
 					somma += 50;
 				}
 				lblSomma.setText(somma + "€");
@@ -615,9 +634,61 @@ public class Client {
 				}
 				if (cinquina) {
 					out.println("cinquina");
+					out.println(text.getText());
 					somma += 100;
 				}
 				lblSomma.setText(somma + "€");
+			}
+		});
+	}
+
+	public void setLblAmbofatto(String Ambofatto) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblAmbofatto.setText(Ambofatto);
+			}
+		});
+	}
+
+	public void setLblTernafatto(String Ternafatto) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblTernafatto.setText(Ternafatto);
+			}
+		});
+	}
+
+	public void setLblQuaternafatto(String Quaternafatto) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblQuaternafatto.setText(Quaternafatto);
+
+			}
+		});
+	}
+
+	public void setLblCinquinafatto(String Cinquinafatto) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblCinquinafatto.setText(Cinquinafatto);
+			}
+		});
+	}
+
+	public void setLblTombolafatto(String Tombolafatto) {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblTombolafatto.setText(Tombolafatto);
 			}
 		});
 	}
@@ -651,7 +722,7 @@ public class Client {
 	}
 
 	public void coloraTombola() {
-		if(tombolaMio && tombolaFatto){
+		if (tombolaMio && tombolaFatto) {
 			Display.getDefault().asyncExec(new Runnable() {
 
 				@Override
@@ -659,7 +730,7 @@ public class Client {
 					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
-			});			
+			});
 		}
 	}
 

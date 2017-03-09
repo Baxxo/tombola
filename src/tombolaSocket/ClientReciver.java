@@ -8,6 +8,8 @@ import java.net.Socket;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.eclipse.swt.widgets.Display;
+
 public class ClientReciver extends Thread {
 	private Socket s;
 	private Client c;
@@ -49,11 +51,11 @@ public class ClientReciver extends Thread {
 						c.coloraTombola();
 					} else {
 						if (con.equals("vincite")) {
-							c.lblAmbofatto.setText(in.readLine());
-							c.lblTernafatto.setText(in.readLine());
-							c.lblQuaternafatto.setText(in.readLine());
-							c.lblCinquinafatto.setText(in.readLine());
-							c.lblTombolafatto.setText(in.readLine());
+							c.setLblAmbofatto(in.readLine());
+							c.setLblTernafatto(in.readLine());
+							c.setLblQuaternafatto(in.readLine());
+							c.setLblCinquinafatto(in.readLine());
+							c.setLblTombolafatto(in.readLine());
 						} else {
 							int num = Integer.parseInt(con);
 							String ambo = in.readLine();
