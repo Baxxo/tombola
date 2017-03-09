@@ -109,13 +109,13 @@ public class Client {
 		}
 
 		shell = new Shell();
+		shell.setBackground(SWTResourceManager.getColor(255, 204, 153));
 		shell.setSize(641, 256);
 		shell.setText("Concorrente");
 
-		table = new Table(shell, SWT.BORDER);
+		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setForeground(SWTResourceManager.getColor(0, 0, 0));
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		table.setLinesVisible(true);
 		table.setBounds(21, 21, 382, 65);
 		table.addSelectionListener(new SelectionListener() {
 
@@ -167,24 +167,27 @@ public class Client {
 		tableColumn_8.setResizable(false);
 
 		lblNome = new Label(shell, SWT.NONE);
+		lblNome.setBackground(SWTResourceManager.getColor(255, 255, 255));
 		lblNome.setAlignment(SWT.RIGHT);
 		lblNome.setBounds(462, 10, 55, 15);
 		lblNome.setText("Nome:");
+		lblNome.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		text = new Text(shell, SWT.BORDER);
 		text.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		text.setForeground(SWTResourceManager.getColor(255, 215, 0));
+		text.setForeground(SWTResourceManager.getColor(255, 0, 0));
 		text.setBounds(522, 10, 76, 21);
 
 		btnConnettiti = new Button(shell, SWT.BORDER | SWT.CENTER);
 		btnConnettiti.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		btnConnettiti.setBackground(SWTResourceManager.getColor(255, 204, 153));
 		btnConnettiti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String nome = text.getText();
 				if (nome.equals("")) {
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel, "Attenzione!\ninserisci il tuo nome!", "",
+					JOptionPane.showMessageDialog(panel, "Inserisci il tuo nome!", "Client",
 							JOptionPane.WARNING_MESSAGE);
 				}
 				try {
@@ -200,7 +203,7 @@ public class Client {
 					e1.printStackTrace();
 				} catch (IOException e1) {
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel, "Attenzione!\nnessun server!", "",
+					JOptionPane.showMessageDialog(panel, "Nessun server acceso!", "Client",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -214,47 +217,61 @@ public class Client {
 		text_1.setBounds(21, 158, 594, 50);
 
 		lblAmbo = new Label(shell, SWT.NONE);
+		lblAmbo.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(21, 110, 55, 15);
+		lblAmbo.setBounds(21, 112, 65, 21);
 		lblAmbo.setText("Ambo");
+		lblAmbo.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblTerna = new Label(shell, SWT.NONE);
+		lblTerna.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(94, 110, 55, 15);
+		lblTerna.setBounds(86, 112, 65, 21);
 		lblTerna.setText("Terna");
+		lblTerna.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblQuaterna = new Label(shell, SWT.NONE);
+		lblQuaterna.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
 		lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(166, 110, 55, 15);
+		lblQuaterna.setBounds(151, 112, 94, 21);
 		lblQuaterna.setText("Quaterna");
+		lblQuaterna.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblCinquina = new Label(shell, SWT.NONE);
 		lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
 		lblCinquina.setAlignment(SWT.CENTER);
-		lblCinquina.setBounds(255, 110, 55, 15);
+		lblCinquina.setBounds(245, 112, 87, 21);
 		lblCinquina.setText("Cinquina");
+		lblCinquina.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblTombola = new Label(shell, SWT.NONE);
+		lblTombola.setBackground(SWTResourceManager.getColor(255, 255, 255));
 		lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(336, 110, 67, 15);
+		lblTombola.setBounds(332, 112, 76, 21);
 		lblTombola.setText("TOMBOLA");
+		lblTombola.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblVincita = new Label(shell, SWT.NONE);
+		lblVincita.setBackground(SWTResourceManager.getColor(255, 255, 255));
+		lblVincita.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblVincita.setAlignment(SWT.RIGHT);
 		lblVincita.setBounds(462, 110, 55, 15);
 		lblVincita.setText("Vincita: ");
+		lblVincita.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		lblSomma = new Label(shell, SWT.NONE);
+		lblSomma.setBackground(SWTResourceManager.getColor(255, 255, 255));
 		lblSomma.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblSomma.setBounds(522, 110, 55, 15);
 		lblSomma.setText(somma + "");
+		lblSomma.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		generaNumeri();
 	}
@@ -594,11 +611,21 @@ public class Client {
 				}
 				if (tombola) {
 					out.println("tombola");
-					System.out.println("Client: " + text.getText());
 					out.println(text.getText());
 					somma += 500;
 				}
 				lblSomma.setText(somma + "");
+			}
+		});
+	}
+
+	public void coloraTombola() {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+				lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 			}
 		});
 	}

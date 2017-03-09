@@ -110,14 +110,14 @@ public class Server {
 		}
 
 		shell = new Shell();
+		shell.setBackground(SWTResourceManager.getColor(153, 204, 255));
 		shell.setSize(500, 508);
 		shell.setText("Tombola");
 
-		table = new Table(shell, SWT.BORDER);
+		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION | SWT.HIDE_SELECTION);
 		table.setForeground(SWTResourceManager.getColor(0, 0, 0));
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		table.setLinesVisible(true);
-		table.setBounds(27, 41, 424, 200);
+		table.setBounds(27, 43, 424, 175);
 		table.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -192,69 +192,74 @@ public class Server {
 		lblTabellone.setBounds(27, 10, 424, 25);
 		lblTabellone.setText("TOMBOLONE");
 
-		btnNumero = new Button(shell, SWT.BORDER);
+		btnNumero = new Button(shell, SWT.NONE);
 		btnNumero.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		btnNumero.setBackground(SWTResourceManager.getColor(153, 204, 255));
+
 		btnNumero.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (list.getItemCount() == 0) {
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel, "Attenzione! \nNessun client è connesso", "",
+					JOptionPane.showMessageDialog(panel, "Nessun client è connesso", "Server",
 							JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-				Thread thread;
 				int num = coloraNumero();
 				sThread.mandaNumero(num, ambo, terna, quaterna, cinquina, tombo);
 				sThread.setCon(false);
 			}
 		});
-		btnNumero.setBounds(187, 258, 75, 25);
+		btnNumero.setBounds(188, 238, 75, 25);
 		btnNumero.setText("Numero");
 
 		list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		list.setForeground(SWTResourceManager.getColor(255, 215, 0));
+		list.setForeground(SWTResourceManager.getColor(0, 255, 102));
 		list.setBounds(306, 308, 145, 124);
 
 		lblClient = new Label(shell, SWT.BORDER);
 		lblClient.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		lblClient.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+		lblClient.setForeground(SWTResourceManager.getColor(0, 255, 102));
 		lblClient.setAlignment(SWT.CENTER);
 		lblClient.setBounds(306, 274, 137, 15);
 		lblClient.setText("CLIENT");
 
 		lblAmbo = new Label(shell, SWT.BORDER);
-		lblAmbo.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblAmbo.setBackground(SWTResourceManager.getColor(240, 240, 240));
+		lblAmbo.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblAmbo.setForeground(SWTResourceManager.getColor(30, 144, 255));
 		lblAmbo.setAlignment(SWT.CENTER);
-		lblAmbo.setBounds(27, 312, 75, 25);
+		lblAmbo.setBounds(27, 289, 75, 25);
 		lblAmbo.setText("Ambo");
 
 		lblTerna = new Label(shell, SWT.BORDER);
-		lblTerna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblTerna.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblTerna.setForeground(SWTResourceManager.getColor(30, 144, 255));
 		lblTerna.setAlignment(SWT.CENTER);
-		lblTerna.setBounds(122, 312, 75, 25);
+		lblTerna.setBounds(122, 289, 75, 25);
 		lblTerna.setText("Terna");
 
 		lblQuaterna = new Label(shell, SWT.BORDER);
-		lblQuaterna.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		lblQuaterna.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblQuaterna.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
+		lblQuaterna.setForeground(SWTResourceManager.getColor(30, 144, 255));
 		lblQuaterna.setAlignment(SWT.CENTER);
-		lblQuaterna.setBounds(27, 349, 75, 25);
+		lblQuaterna.setBounds(27, 328, 75, 25);
 		lblQuaterna.setText("Quaterna");
 
 		lblCinquina = new Label(shell, SWT.BORDER);
-		lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
-		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		lblCinquina.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD | SWT.ITALIC));
+		lblCinquina.setForeground(SWTResourceManager.getColor(30, 144, 255));
 		lblCinquina.setAlignment(SWT.CENTER);
-		lblCinquina.setBounds(122, 349, 75, 25);
+		lblCinquina.setBounds(122, 328, 75, 25);
 		lblCinquina.setText("Cinquina");
 
 		lblTombola = new Label(shell, SWT.BORDER | SWT.CENTER);
-		lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		lblTombola.setBackground(SWTResourceManager.getColor(240, 240, 240));
 		lblTombola.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.BOLD | SWT.ITALIC));
+		lblTombola.setForeground(SWTResourceManager.getColor(0, 51, 255));
 		lblTombola.setAlignment(SWT.CENTER);
-		lblTombola.setBounds(27, 395, 170, 25);
+		lblTombola.setBounds(27, 372, 170, 25);
 		lblTombola.setText("TOMBOLA");
 
 	}
@@ -297,12 +302,12 @@ public class Server {
 					lblCinquina.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (tombo) {
+					sThread.tomb();
 					lblTombola.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 					btnNumero.setEnabled(false);
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel,
-							"Attenzione!\nil giocatore " + vincitore + " ha fatto tombola!", "",
+					JOptionPane.showMessageDialog(panel, "Il giocatore " + vincitore + " ha fatto tombola!", "server",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -350,78 +355,45 @@ public class Server {
 				// cerco il numero
 
 				if (numInt <= 10) {
-					item.get(0).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(0).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(0).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 10 && numInt <= 20) {
-					item.get(1).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(1).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(1).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 20 && numInt <= 30) {
-					item.get(2).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(2).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(2).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 30 && numInt <= 40) {
-					item.get(3).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(3).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(3).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 40 && numInt <= 50) {
-					item.get(4).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(4).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(4).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 50 && numInt <= 60) {
-					item.get(5).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(5).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(5).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 60 && numInt <= 70) {
-					item.get(6).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(6).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(6).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 70 && numInt <= 80) {
-					item.get(7).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(7).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(7).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 				if (numInt > 80 && numInt <= 90) {
-					item.get(8).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_RED));
+					item.get(8).setBackground(num - 1, SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					item.get(8).setForeground(num - 1, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				}
 			} else {
-				if (numInt == 10) {
-					item.get(0).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(0).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 20) {
-					item.get(1).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(1).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 30) {
-					item.get(2).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(2).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 40) {
-					item.get(3).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(3).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 50) {
-					item.get(4).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(4).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 60) {
-					item.get(5).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(5).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 70) {
-					item.get(6).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(6).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 80) {
-					item.get(7).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(7).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
-				if (numInt == 90) {
-					item.get(8).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_RED));
-					item.get(8).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				}
+				int col = (numInt / 10) - 1;
+				item.get(col).setBackground(9, SWTResourceManager.getColor(SWT.COLOR_GREEN));
+				item.get(col).setForeground(9, SWTResourceManager.getColor(SWT.COLOR_WHITE));
 			}
 		}
 		return numInt;

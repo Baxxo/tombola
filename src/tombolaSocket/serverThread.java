@@ -13,6 +13,7 @@ public class serverThread extends Thread {
 	// Array di PrintWriter
 	private boolean isStarted = true;
 	Socket s;
+	PrintWriter out;
 	ServerSocket ss;
 	static ArrayList<PrintWriter> clientList = new ArrayList<PrintWriter>();
 	private Server server;
@@ -42,7 +43,6 @@ public class serverThread extends Thread {
 					} else {
 						if (con.equals("tombola")) {
 							String c = in.readLine();
-							System.out.println("ciao " + c);
 							server.vincitore = c;
 							server.setVin(con);
 						} else {
@@ -69,7 +69,7 @@ public class serverThread extends Thread {
 					s.close();
 				}
 				// aggiunge ad un vettore di client il nuovo client
-				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+				out = new PrintWriter(s.getOutputStream(), true);
 				clientList.add(out);
 				// per ogni connessione crea un socket e un thread che lo
 				// gestisca
@@ -82,6 +82,10 @@ public class serverThread extends Thread {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void tomb() {
+		out.println("fai");
 	}
 
 	public void mandaNumero(int numero, boolean ambo, boolean terna, boolean quaterna, boolean cinquina,
