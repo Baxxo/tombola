@@ -21,6 +21,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class Server {
 
@@ -307,8 +309,8 @@ public class Server {
 					lblTombola.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 					btnNumero.setEnabled(false);
 					JPanel panel = new JPanel();
-					JOptionPane.showMessageDialog(panel, "Il giocatore " + vincitore + " ha fatto tombola!", "server",
-							JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(panel, "Il giocatore " + vincitore + " ha fatto tombola!", "Server",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

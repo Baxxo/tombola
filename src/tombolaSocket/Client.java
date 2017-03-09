@@ -270,7 +270,7 @@ public class Client {
 		lblSomma.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		lblSomma.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		lblSomma.setBounds(522, 110, 55, 15);
-		lblSomma.setText(somma + "");
+		lblSomma.setText(somma + "€");
 		lblSomma.setBackground(SWTResourceManager.getColor(255, 204, 153));
 
 		generaNumeri();
@@ -417,7 +417,7 @@ public class Client {
 					out.println("ambo");
 					somma += 10;
 				}
-				lblSomma.setText(somma + "");
+				lblSomma.setText(somma + "€");
 			}
 		});
 
@@ -471,7 +471,7 @@ public class Client {
 					out.println("terna");
 					somma += 20;
 				}
-				lblSomma.setText(somma + "");
+				lblSomma.setText(somma + "€");
 			}
 		});
 
@@ -528,7 +528,7 @@ public class Client {
 					out.println("quaterna");
 					somma += 50;
 				}
-				lblSomma.setText(somma + "");
+				lblSomma.setText(somma + "€");
 			}
 		});
 	}
@@ -586,7 +586,7 @@ public class Client {
 					out.println("cinquina");
 					somma += 100;
 				}
-				lblSomma.setText(somma + "");
+				lblSomma.setText(somma + "€");
 			}
 		});
 	}
@@ -614,7 +614,7 @@ public class Client {
 					out.println(text.getText());
 					somma += 500;
 				}
-				lblSomma.setText(somma + "");
+				lblSomma.setText(somma + "€");
 			}
 		});
 	}
