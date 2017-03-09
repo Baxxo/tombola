@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Label;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import javax.swing.JOptionPane;
@@ -21,9 +22,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.events.MouseTrackAdapter;
-import org.eclipse.swt.events.MouseEvent;
-
 public class Server {
 
 	protected Shell shell;
@@ -55,7 +53,9 @@ public class Server {
 	Thread tServer;
 	serverThread sThread;
 	String vincitore = "";
+	String output = "";
 	private Label lblClient;
+	private int[] numeriClient; // numeri contenuti in questa cartella
 
 	/**
 	 * Launch the application.
@@ -400,5 +400,72 @@ public class Server {
 		}
 		return numInt;
 
+	}
+	public int[] generaNumeri() {
+
+		numeriClient = new int[15];
+		// Riempio il vettore con 15 numeri casuali che rispettino le regole:
+		// 1. no numeri ripetuti
+		// 2. max 2 numeri con la stessa decina
+		final int[] decine = new int[10]; // indica quanti numeri per ogni
+											// decina
+		for (int i = 0; i < 15; i++) {
+			// Genero un numero casuale tra 1 e 90
+			final int n = Utility.generaCasuale(1, 90);
+			// Decina attuale
+			final int d = n == 90 ? 8 : n / 10; // il 90 va nella colonna degli
+												// 80
+
+			// Se il numero casuale generato è già presente oppure se ci sono
+			// già due
+			// numeri con la stessa decina, ripeto il calcolo dell'elemento
+			// i-esimo
+			if (decine[d] >= 2 || Utility.indexOf(n, numeriClient, i) >= 0) {
+				i--;
+				continue;
+			} else {
+				numeriClient[i] = n;
+				decine[d]++;
+			}
+		}
+
+		// Ordina il vettore finale
+		Arrays.sort(numeriClient);
+
+		// Permuta per ottenere le righe finali (un elemento ogni tre nel
+		// vettore ordinato)
+		int tmp = numeriClient[1];
+		numeriClient[1] = numeriClient[3];
+		numeriClient[3] = numeriClient[9];
+		numeriClient[9] = numeriClient[13];
+		numeriClient[13] = numeriClient[11];
+		numeriClient[11] = numeriClient[5];
+		numeriClient[5] = numeriClient[2];
+		numeriClient[2] = numeriClient[6];
+		numeriClient[6] = numeriClient[4];
+		numeriClient[4] = numeriClient[12];
+		numeriClient[12] = numeriClient[8];
+		numeriClient[8] = numeriClient[10];
+		numeriClient[10] = numeriClient[5];
+		numeriClient[5] = tmp;
+
+		// Scambia (in verticale) i numeri della stessa colonna se non sono in
+		// ordine tra loro
+		for (int i = 0; i < 15; i++) {
+			final int n = numeriClient[i];
+			final int d = n / 10;
+			for (int j = i; j < 15; j++) {
+				final int n2 = numeriClient[j];
+				final int d2 = n2 / 10;
+
+				if (d == d2 && n > n2) { // d==d2: stessa colonna, n>n2 ordine
+											// invertito
+					final int temp = numeriClient[i];
+					numeriClient[i] = numeriClient[j];
+					numeriClient[j] = temp;
+				}
+			}
+		}
+		return numeriClient;
 	}
 }

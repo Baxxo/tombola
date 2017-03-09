@@ -38,17 +38,32 @@ public class ClientReciver extends Thread {
 				String con = in.readLine();
 				if (con.equalsIgnoreCase("connesso")) {
 					c.setCon(con);
+					int[] numeriRicevuti = new int[15];
+					int l = Integer.parseInt(in.readLine()); // legge lunghezza
+					for (int i = 0; i < l; i++) {
+						numeriRicevuti[i] = Integer.parseInt(in.readLine());
+					}
+					c.stampa(numeriRicevuti);
 				} else {
 					if (con.equals("fai")) {
 						c.coloraTombola();
 					} else {
-						int num = Integer.parseInt(con);
-						String ambo = in.readLine();
-						String terna = in.readLine();
-						String quaterna = in.readLine();
-						String cinquina = in.readLine();
-						String tombola = in.readLine();
-						c.numeroEstratto(num, ambo, terna, quaterna, cinquina, tombola);
+						if (con.equals("vincite")) {
+							c.lblAmbofatto.setText(in.readLine());
+							c.lblTernafatto.setText(in.readLine());
+							c.lblQuaternafatto.setText(in.readLine());
+							c.lblCinquinafatto.setText(in.readLine());
+							c.lblTombolafatto.setText(in.readLine());
+						} else {
+							int num = Integer.parseInt(con);
+							String ambo = in.readLine();
+							String terna = in.readLine();
+							String quaterna = in.readLine();
+							String cinquina = in.readLine();
+							String tombola = in.readLine();
+							c.numeroEstratto(num, ambo, terna, quaterna, cinquina, tombola);
+
+						}
 					}
 				}
 

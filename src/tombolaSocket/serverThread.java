@@ -75,6 +75,11 @@ public class serverThread extends Thread {
 				// gestisca
 				ServerThread st = new ServerThread(s, server);
 				out.println("Connesso");
+				int[] numeriClient = server.generaNumeri();
+				out.println(numeriClient.length);
+				for (int i : numeriClient) {
+					out.println(i);
+				}
 				st.start();
 				// ritorna in ascolto/attesa
 			}
@@ -85,8 +90,29 @@ public class serverThread extends Thread {
 	}
 
 	public void tomb() {
-		out.println("fai");
+		for (PrintWriter printWriter : clientList) {
+			printWriter.println("fai");
+		}
 	}
+
+	public void vincite(String nameAmbo, String nameTerna, String nameQuaterna, String nameCinquina,
+			String nameTombola) {
+		for (PrintWriter printWriter : clientList) {
+			printWriter.println("vincite");
+			printWriter.println(nameAmbo);
+			printWriter.println(nameTerna);
+			printWriter.println(nameQuaterna);
+			printWriter.println(nameCinquina);
+			printWriter.println(nameTombola);
+		}
+
+	}
+
+	boolean amboFatto = false;
+	boolean ternaFatto = false;
+	boolean quaternaFatto = false;
+	boolean ciqnuinaFatto = false;
+	boolean tombolaFatto = false;
 
 	public void mandaNumero(int numero, boolean ambo, boolean terna, boolean quaterna, boolean cinquina,
 			boolean tombola) {
